@@ -9010,6 +9010,24 @@ body.portal-mode #pageRemedialStatus
   }
 }
 
+
+/* =====================================================
+   StudentPR Mobile — Remove Remedial Area Teacher Dropdowns
+   เหลือตัวกรอง ปีการศึกษา ภาคเรียน และช่องค้นหา
+   ===================================================== */
+
+body.portal-mode #pageRemedialStatus
+.retest-filter-grid{
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr))
+    !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-search-field{
+  grid-column:1 / -1 !important;
+}
+
 </style>
 </head>
 <body>
@@ -10630,29 +10648,6 @@ body.portal-mode #pageRemedialStatus
         </div>
 
 
-        <!-- กลุ่มสาระการเรียนรู้ -->
-        <div class="retest-filter-field">
-          <label for="remedialAreaFilter">
-            กลุ่มสาระการเรียนรู้
-          </label>
-
-          <select id="remedialAreaFilter">
-            <option value="">ทั้งหมด</option>
-          </select>
-        </div>
-
-
-        <!-- ครูผู้สอน -->
-        <div class="retest-filter-field">
-          <label for="remedialTeacherFilter">
-            ครูผู้สอน
-          </label>
-
-          <select id="remedialTeacherFilter">
-            <option value="">ทั้งหมด</option>
-          </select>
-        </div>
-
 
         <!-- ค้นหา -->
         <div class="retest-filter-field retest-search-field">
@@ -10663,7 +10658,7 @@ body.portal-mode #pageRemedialStatus
           <input
             id="remedialSearchInput"
             type="search"
-            placeholder="รหัสวิชา / รายวิชา / ครูผู้สอน / สถานะ"
+            placeholder="ค้นหารหัสวิชา รายวิชา ครูผู้สอน หรือสถานะ"
             autocomplete="off"
           >
         </div>
@@ -15673,11 +15668,12 @@ function normalizeRemedialTrackingItems(items){
   APP_STATE.remedialFilters.term =
     $('remedialTermFilter')?.value || '';
 
-  APP_STATE.remedialFilters.learningArea =
-    $('remedialAreaFilter')?.value || '';
-
-  APP_STATE.remedialFilters.teacher =
-    $('remedialTeacherFilter')?.value || '';
+  /*
+   * หน้า Mobile ไม่แสดงตัวกรองกลุ่มสาระและครูผู้สอน
+   * จึงล้างค่าไว้เสมอ เพื่อไม่ให้ค่าค้างจากสถานะเดิม
+   */
+  APP_STATE.remedialFilters.learningArea = '';
+  APP_STATE.remedialFilters.teacher = '';
 
   APP_STATE.remedialFilters.keyword =
     $('remedialSearchInput')?.value.trim() || '';
