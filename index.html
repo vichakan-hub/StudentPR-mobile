@@ -7896,6 +7896,539 @@ body.portal-mode #pageGrades
   }
 }
 
+
+/* =====================================================
+   StudentPR Mobile — Risk Page Redesign
+   ปรับหน้าความเสี่ยงตามความกว้างของ Mobile shell 430px
+   ไม่อาศัยความกว้าง viewport ของ browser
+   ===================================================== */
+
+body.portal-mode #pageRisk{
+  width:100% !important;
+  min-width:0 !important;
+}
+
+body.portal-mode #pageRisk .student-risk-page{
+  overflow:hidden !important;
+  border-radius:24px !important;
+  background:#ffffff !important;
+}
+
+/* ---------- Header ---------- */
+
+body.portal-mode #pageRisk .student-risk-head{
+  position:relative !important;
+  overflow:hidden !important;
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:14px !important;
+  padding:16px !important;
+  border-bottom:1px solid #dce7f2 !important;
+  background:
+    linear-gradient(
+      145deg,
+      #fff7ed 0%,
+      #fff1f2 48%,
+      #eef6ff 100%
+    ) !important;
+}
+
+body.portal-mode #pageRisk .student-risk-head::before{
+  content:'';
+  position:absolute;
+  width:150px;
+  height:150px;
+  top:-78px;
+  right:-56px;
+  border-radius:50%;
+  background:rgba(249,115,22,.08);
+}
+
+body.portal-mode #pageRisk .student-risk-heading{
+  position:relative;
+  z-index:1;
+  min-width:0;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+body.portal-mode #pageRisk .student-risk-heading-icon{
+  width:50px;
+  height:50px;
+  display:grid;
+  place-items:center;
+  flex:0 0 50px;
+  border-radius:17px;
+  color:#ffffff;
+  background:
+    linear-gradient(
+      135deg,
+      #f97316,
+      #dc2626
+    );
+  font-size:24px;
+  box-shadow:0 10px 22px rgba(220,38,38,.18);
+}
+
+body.portal-mode #pageRisk .student-risk-kicker{
+  margin-bottom:2px;
+  color:#e25514;
+  font-size:9.5px;
+  line-height:1.3;
+  font-weight:900;
+  letter-spacing:.8px;
+}
+
+body.portal-mode #pageRisk .student-risk-title{
+  margin:0 !important;
+  color:#17324a !important;
+  font-size:20px !important;
+  line-height:1.3 !important;
+}
+
+body.portal-mode #pageRisk .student-risk-subtitle{
+  margin:3px 0 0 !important;
+  color:#64748b !important;
+  font-size:10.5px !important;
+  line-height:1.5 !important;
+}
+
+body.portal-mode #pageRisk .student-risk-head-actions{
+  position:relative;
+  z-index:1;
+  width:100% !important;
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:8px !important;
+}
+
+body.portal-mode #pageRisk .student-risk-head-actions .btn{
+  width:100% !important;
+  min-width:0 !important;
+  min-height:42px !important;
+  padding:0 10px !important;
+  border-radius:14px !important;
+  font-size:11.5px !important;
+}
+
+/* ---------- Filters ---------- */
+
+body.portal-mode #pageRisk .student-risk-filter{
+  width:100% !important;
+  min-width:0 !important;
+  display:grid !important;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr))
+    !important;
+  gap:9px !important;
+  padding:14px !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-filter-field{
+  min-width:0 !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-filter-field:nth-child(3){
+  grid-column:1 / -1 !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-filter-field label{
+  font-size:11px !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-filter-field select,
+body.portal-mode #pageRisk
+.student-risk-filter-field input{
+  width:100% !important;
+  min-width:0 !important;
+  height:44px !important;
+  padding:0 11px !important;
+  border-radius:14px !important;
+  font-size:12.5px !important;
+}
+
+/* ---------- Criteria ---------- */
+
+body.portal-mode #pageRisk .student-risk-criteria{
+  width:auto !important;
+  min-width:0 !important;
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:10px !important;
+  margin:0 14px 12px !important;
+  padding:13px !important;
+  border-radius:17px !important;
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #f8fbff
+    ) !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-criteria-title{
+  font-size:12px !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-criteria-items{
+  width:100% !important;
+  display:grid !important;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr))
+    !important;
+  gap:8px !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-criteria-item{
+  width:100% !important;
+  min-width:0 !important;
+  min-height:78px !important;
+  padding:9px !important;
+  align-items:flex-start !important;
+  border-radius:13px !important;
+  font-size:10px !important;
+  line-height:1.55 !important;
+}
+
+/* ---------- KPI ---------- */
+
+body.portal-mode #pageRisk .student-risk-kpi-grid{
+  width:100% !important;
+  display:grid !important;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr))
+    !important;
+  gap:9px !important;
+  padding:0 14px 13px !important;
+}
+
+body.portal-mode #pageRisk .student-risk-kpi{
+  min-width:0 !important;
+  min-height:94px !important;
+  padding:12px !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:9px !important;
+  overflow:hidden !important;
+  border-radius:17px !important;
+}
+
+body.portal-mode #pageRisk .student-risk-kpi.all{
+  grid-column:1 / -1 !important;
+  min-height:78px !important;
+}
+
+body.portal-mode #pageRisk .student-risk-kpi-icon{
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  flex:0 0 38px;
+  border-radius:13px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(255,255,255,.80);
+  font-size:19px;
+}
+
+body.portal-mode #pageRisk .student-risk-kpi-content{
+  min-width:0;
+  display:block;
+}
+
+body.portal-mode #pageRisk .student-risk-kpi-label{
+  display:block !important;
+  font-size:10.5px !important;
+  line-height:1.4 !important;
+  white-space:normal !important;
+  word-break:normal !important;
+}
+
+body.portal-mode #pageRisk .student-risk-kpi-value{
+  display:block !important;
+  margin-top:3px !important;
+  font-size:25px !important;
+}
+
+body.portal-mode #pageRisk .student-risk-kpi.active::after{
+  top:8px !important;
+  right:9px !important;
+  width:20px !important;
+  height:20px !important;
+  font-size:11px !important;
+}
+
+/* ---------- Advice and result summary ---------- */
+
+body.portal-mode #pageRisk .student-risk-advice{
+  margin:0 14px 11px !important;
+  padding:12px 13px !important;
+  border-radius:15px !important;
+  font-size:11.5px !important;
+  line-height:1.6 !important;
+}
+
+body.portal-mode #pageRisk .student-risk-result-summary{
+  width:max-content !important;
+  max-width:calc(100% - 28px) !important;
+  margin:0 14px 10px auto !important;
+  padding:7px 10px !important;
+  border:1px solid #dce8f3;
+  border-radius:999px;
+  color:#52677d !important;
+  background:#f8fbff;
+  font-size:10.5px !important;
+  line-height:1.4 !important;
+  text-align:right !important;
+  white-space:normal !important;
+}
+
+/* ---------- Risk rows become cards ---------- */
+
+body.portal-mode #pageRisk .student-risk-table-wrap{
+  width:100% !important;
+  max-width:100% !important;
+  margin:0 !important;
+  padding:0 14px 14px !important;
+  overflow:visible !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+}
+
+body.portal-mode #pageRisk .student-risk-table{
+  display:block !important;
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  table-layout:auto !important;
+  background:transparent !important;
+}
+
+body.portal-mode #pageRisk .student-risk-table thead{
+  display:none !important;
+}
+
+body.portal-mode #pageRisk .student-risk-table tbody{
+  display:grid !important;
+  width:100% !important;
+  gap:10px !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-table tbody tr{
+  display:grid !important;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr))
+    !important;
+  grid-template-areas:
+    "code period"
+    "subject subject"
+    "teacher teacher"
+    "score attendance"
+    "status status"
+    !important;
+
+  width:100% !important;
+  min-width:0 !important;
+  overflow:hidden !important;
+
+  border:1px solid #dce7f2 !important;
+  border-left-width:4px !important;
+  border-radius:18px !important;
+  background:#ffffff !important;
+  box-shadow:0 8px 18px rgba(15,23,42,.05);
+}
+
+body.portal-mode #pageRisk
+.student-risk-table tbody tr.normal{
+  border-left-color:#22c55e !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-table tbody tr.score,
+body.portal-mode #pageRisk
+.student-risk-table tbody tr.both{
+  border-left-color:#ef4444 !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-table tbody tr.attendance{
+  border-left-color:#f59e0b !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-table tbody tr.incomplete{
+  border-left-color:#94a3b8 !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-table tbody td{
+  display:flex !important;
+  align-items:flex-start !important;
+  justify-content:space-between !important;
+  gap:8px !important;
+
+  width:auto !important;
+  min-width:0 !important;
+  max-width:none !important;
+  padding:10px !important;
+
+  border-right:0 !important;
+  border-bottom:1px solid #edf2f7 !important;
+  background:#ffffff !important;
+
+  color:#17324a !important;
+  text-align:right !important;
+  white-space:normal !important;
+  word-break:normal !important;
+  overflow-wrap:anywhere !important;
+  overflow:visible !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-table tbody td::before{
+  content:attr(data-label);
+  flex:0 0 auto;
+  max-width:46%;
+  color:#718195;
+  font-size:10px;
+  line-height:1.4;
+  font-weight:700;
+  text-align:left;
+}
+
+body.portal-mode #pageRisk
+.student-risk-table tbody td:nth-child(1){
+  grid-area:code !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-table tbody td:nth-child(2){
+  grid-area:subject !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-table tbody td:nth-child(3){
+  grid-area:teacher !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-table tbody td:nth-child(4){
+  grid-area:period !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-table tbody td:nth-child(5){
+  grid-area:score !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-table tbody td:nth-child(6){
+  grid-area:attendance !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-table tbody td:nth-child(7){
+  grid-area:status !important;
+  align-items:center !important;
+  padding-top:11px !important;
+  padding-bottom:11px !important;
+  border-bottom:0 !important;
+  background:#f8fbff !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-table td[data-label="รายวิชา"]{
+  padding-top:12px !important;
+  padding-bottom:12px !important;
+  color:#17324a !important;
+  font-weight:900 !important;
+  background:#fbfdff !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-table td[data-label="ครูผู้สอน"]{
+  color:#52677d !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-percent{
+  min-width:58px !important;
+  min-height:31px !important;
+  padding:4px 8px !important;
+  font-size:12.5px !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-status{
+  min-width:96px !important;
+  min-height:31px !important;
+  padding:5px 9px !important;
+  font-size:10.5px !important;
+}
+
+/* empty state */
+body.portal-mode #pageRisk
+.student-risk-table tbody tr:has(.empty-state){
+  display:block !important;
+  border-left-width:1px !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-table .empty-state{
+  display:block !important;
+  width:100% !important;
+  padding:28px 16px !important;
+  border:0 !important;
+  text-align:center !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-table .empty-state::before{
+  display:none !important;
+}
+
+/* จอแคบมาก */
+@media (max-width:360px){
+  body.portal-mode #pageRisk
+  .student-risk-filter,
+  body.portal-mode #pageRisk
+  .student-risk-criteria-items,
+  body.portal-mode #pageRisk
+  .student-risk-kpi-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  body.portal-mode #pageRisk
+  .student-risk-filter-field:nth-child(3),
+  body.portal-mode #pageRisk
+  .student-risk-kpi.all{
+    grid-column:1 !important;
+  }
+
+  body.portal-mode #pageRisk
+  .student-risk-table tbody tr{
+    grid-template-columns:1fr !important;
+    grid-template-areas:
+      "code"
+      "period"
+      "subject"
+      "teacher"
+      "score"
+      "attendance"
+      "status"
+      !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -9153,38 +9686,53 @@ body.portal-mode #pageGrades
 
     <div class="student-risk-head">
 
-      <div>
-        <h2 class="student-risk-title">
-          ความเสี่ยงของฉัน
-        </h2>
+  <div class="student-risk-heading">
 
-        <p class="student-risk-subtitle">
-          วิเคราะห์จากคะแนนกลางภาคและเวลาเรียน
-          ที่ครูผู้สอนรายงาน
-        </p>
+    <div
+      class="student-risk-heading-icon"
+      aria-hidden="true"
+    >
+      ⚠️
+    </div>
+
+    <div>
+      <div class="student-risk-kicker">
+        ACADEMIC RISK
       </div>
 
-<div class="student-risk-head-actions">
+      <h2 class="student-risk-title">
+        ความเสี่ยงของฉัน
+      </h2>
 
-  <button
-    id="riskClearFilterBtn"
-    class="btn btn-soft"
-    type="button"
-  >
-    ✕ ล้างตัวกรอง
-  </button>
+      <p class="student-risk-subtitle">
+        วิเคราะห์จากคะแนนกลางภาคและเวลาเรียน
+        ที่ครูผู้สอนรายงาน
+      </p>
+    </div>
 
-  <button
-    id="riskReloadBtn"
-    class="btn btn-outline"
-    type="button"
-  >
-    ↻ โหลดข้อมูลใหม่
-  </button>
+  </div>
+
+  <div class="student-risk-head-actions">
+
+    <button
+      id="riskClearFilterBtn"
+      class="btn btn-soft"
+      type="button"
+    >
+      ✕ ล้างตัวกรอง
+    </button>
+
+    <button
+      id="riskReloadBtn"
+      class="btn btn-outline"
+      type="button"
+    >
+      ↻ โหลดใหม่
+    </button>
+
+  </div>
 
 </div>
-
-    </div>
 
 
 <div class="student-risk-filter">
@@ -9269,18 +9817,22 @@ body.portal-mode #pageGrades
     type="button"
     data-risk-filter="all"
   >
+    <span class="student-risk-kpi-icon">
+      📚
+    </span>
 
-    <div class="student-risk-kpi-label">
-      รายวิชาที่รายงาน
-    </div>
+    <span class="student-risk-kpi-content">
+      <span class="student-risk-kpi-label">
+        รายวิชาที่รายงาน
+      </span>
 
-    <div
-      id="riskAllCount"
-      class="student-risk-kpi-value"
-    >
-      0
-    </div>
-
+      <span
+        id="riskAllCount"
+        class="student-risk-kpi-value"
+      >
+        0
+      </span>
+    </span>
   </button>
 
 
@@ -9289,18 +9841,22 @@ body.portal-mode #pageGrades
     type="button"
     data-risk-filter="normal"
   >
+    <span class="student-risk-kpi-icon">
+      ✅
+    </span>
 
-    <div class="student-risk-kpi-label">
-      สถานะปกติ
-    </div>
+    <span class="student-risk-kpi-content">
+      <span class="student-risk-kpi-label">
+        สถานะปกติ
+      </span>
 
-    <div
-      id="riskNormalCount"
-      class="student-risk-kpi-value"
-    >
-      0
-    </div>
-
+      <span
+        id="riskNormalCount"
+        class="student-risk-kpi-value"
+      >
+        0
+      </span>
+    </span>
   </button>
 
 
@@ -9309,18 +9865,22 @@ body.portal-mode #pageGrades
     type="button"
     data-risk-filter="score"
   >
+    <span class="student-risk-kpi-icon">
+      📉
+    </span>
 
-    <div class="student-risk-kpi-label">
-      เสี่ยงด้านคะแนน
-    </div>
+    <span class="student-risk-kpi-content">
+      <span class="student-risk-kpi-label">
+        เสี่ยงด้านคะแนน
+      </span>
 
-    <div
-      id="riskScoreCount"
-      class="student-risk-kpi-value"
-    >
-      0
-    </div>
-
+      <span
+        id="riskScoreCount"
+        class="student-risk-kpi-value"
+      >
+        0
+      </span>
+    </span>
   </button>
 
 
@@ -9329,42 +9889,52 @@ body.portal-mode #pageGrades
     type="button"
     data-risk-filter="attendance"
   >
+    <span class="student-risk-kpi-icon">
+      🕒
+    </span>
 
-    <div class="student-risk-kpi-label">
-      เสี่ยงด้านเวลาเรียน
-    </div>
+    <span class="student-risk-kpi-content">
+      <span class="student-risk-kpi-label">
+        เสี่ยงด้านเวลาเรียน
+      </span>
 
-    <div
-      id="riskAttendanceCount"
-      class="student-risk-kpi-value"
-    >
-      0
-    </div>
-
+      <span
+        id="riskAttendanceCount"
+        class="student-risk-kpi-value"
+      >
+        0
+      </span>
+    </span>
   </button>
+
+
   <button
-  class="student-risk-kpi incomplete"
-  type="button"
-  data-risk-filter="incomplete"
->
-
-  <div class="student-risk-kpi-label">
-    ข้อมูลไม่ครบ
-  </div>
-
-  <div
-    id="riskIncompleteCount"
-    class="student-risk-kpi-value"
+    class="student-risk-kpi incomplete"
+    type="button"
+    data-risk-filter="incomplete"
   >
-    0
-  </div>
+    <span class="student-risk-kpi-icon">
+      📋
+    </span>
 
-</button>
+    <span class="student-risk-kpi-content">
+      <span class="student-risk-kpi-label">
+        ข้อมูลไม่ครบ
+      </span>
+
+      <span
+        id="riskIncompleteCount"
+        class="student-risk-kpi-value"
+      >
+        0
+      </span>
+    </span>
+  </button>
 
 </div>
 
 
-    <div
+<div
       id="riskAdviceBox"
       class="student-risk-advice"
     >
@@ -13348,7 +13918,7 @@ const attendancePercentText =
     : `${attendancePercent.toFixed(1)}%`;
 
       return `
-        <tr>
+        <tr class="student-risk-row ${escapeHtml(status.key)}">
 
           <td data-label="รหัสวิชา">
             ${escapeHtml(
