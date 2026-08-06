@@ -8429,6 +8429,550 @@ body.portal-mode #pageRisk
   }
 }
 
+
+/* =====================================================
+   StudentPR Mobile — Remedial Page Redesign
+   ปรับหน้าสอบแก้ตัวตามความกว้าง Mobile shell 430px
+   ===================================================== */
+
+body.portal-mode #pageRemedialStatus{
+  width:100% !important;
+  min-width:0 !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-card{
+  width:100% !important;
+  min-width:0 !important;
+  overflow:hidden !important;
+  border-radius:24px !important;
+  background:#ffffff !important;
+}
+
+/* ---------- Header ---------- */
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-head{
+  position:relative !important;
+  overflow:hidden !important;
+  display:block !important;
+  padding:16px !important;
+  border-bottom:1px solid #dce7f2 !important;
+  background:
+    linear-gradient(
+      145deg,
+      #eef6ff 0%,
+      #f5f3ff 52%,
+      #fff7ed 100%
+    ) !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-head::before{
+  content:'';
+  position:absolute;
+  width:150px;
+  height:150px;
+  top:-80px;
+  right:-58px;
+  border-radius:50%;
+  background:rgba(124,58,237,.08);
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-heading{
+  position:relative;
+  z-index:1;
+  min-width:0;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-heading-icon{
+  width:50px;
+  height:50px;
+  display:grid;
+  place-items:center;
+  flex:0 0 50px;
+  border-radius:17px;
+  color:#ffffff;
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #2563eb
+    );
+  font-size:24px;
+  box-shadow:0 10px 22px rgba(79,70,229,.20);
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-kicker{
+  margin-bottom:2px;
+  color:#6d28d9;
+  font-size:9.5px;
+  line-height:1.3;
+  font-weight:900;
+  letter-spacing:.8px;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-title{
+  margin:0 !important;
+  color:#17324a !important;
+  font-size:20px !important;
+  line-height:1.3 !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-subtitle{
+  margin:3px 0 0 !important;
+  color:#64748b !important;
+  font-size:10.5px !important;
+  line-height:1.5 !important;
+}
+
+/* ---------- Filters ---------- */
+
+body.portal-mode #pageRemedialStatus
+.retest-filter-section{
+  width:100% !important;
+  min-width:0 !important;
+  padding:14px !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-filter-grid{
+  width:100% !important;
+  min-width:0 !important;
+  display:grid !important;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr))
+    !important;
+  gap:9px !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-filter-field{
+  min-width:0 !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-filter-field:nth-child(3),
+body.portal-mode #pageRemedialStatus
+.retest-filter-field:nth-child(4),
+body.portal-mode #pageRemedialStatus
+.retest-filter-field:nth-child(5){
+  grid-column:1 / -1 !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-filter-field label{
+  font-size:11px !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-filter-field select,
+body.portal-mode #pageRemedialStatus
+.retest-filter-field input{
+  width:100% !important;
+  min-width:0 !important;
+  height:44px !important;
+  padding:0 11px !important;
+  border-radius:14px !important;
+  font-size:12.5px !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-filter-actions{
+  width:100% !important;
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:8px !important;
+  margin-top:10px !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-filter-actions .btn{
+  width:100% !important;
+  min-width:0 !important;
+  min-height:43px !important;
+  padding:0 10px !important;
+  border-radius:14px !important;
+  font-size:12px !important;
+}
+
+/* ---------- KPI ---------- */
+
+body.portal-mode #pageRemedialStatus
+.remedial-kpi-grid{
+  width:100% !important;
+  min-width:0 !important;
+  display:grid !important;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr))
+    !important;
+  gap:9px !important;
+  padding:0 14px 13px !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.remedial-kpi-card{
+  min-width:0 !important;
+  min-height:92px !important;
+  padding:12px !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:9px !important;
+  overflow:hidden !important;
+  border-radius:17px !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.remedial-kpi-icon{
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  flex:0 0 38px;
+  border-radius:13px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(255,255,255,.82);
+  font-size:18px;
+}
+
+body.portal-mode #pageRemedialStatus
+.remedial-kpi-content{
+  min-width:0;
+  display:block;
+}
+
+body.portal-mode #pageRemedialStatus
+.remedial-kpi-label{
+  display:block !important;
+  font-size:10.5px !important;
+  line-height:1.4 !important;
+  white-space:normal !important;
+  word-break:normal !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.remedial-kpi-value{
+  display:block !important;
+  margin-top:3px !important;
+  font-size:25px !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.remedial-kpi-card[data-remedial-filter="all"]{
+  color:#1d4ed8;
+  border-color:#bfdbfe !important;
+  background:#eff6ff !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.remedial-kpi-card[data-remedial-filter="unresolved"]{
+  color:#b91c1c;
+  border-color:#fecaca !important;
+  background:#fff4f4 !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.remedial-kpi-card[data-remedial-filter="pending"]{
+  color:#b45309;
+  border-color:#fed7aa !important;
+  background:#fff8ed !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.remedial-kpi-card[data-remedial-filter="approved"]{
+  color:#15803d;
+  border-color:#bbf7d0 !important;
+  background:#f0fdf4 !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.remedial-kpi-card.active{
+  color:#ffffff !important;
+  border-color:transparent !important;
+  background:
+    linear-gradient(
+      135deg,
+      #2563eb,
+      #43b7e8
+    ) !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.remedial-kpi-card.active::after{
+  top:8px !important;
+  right:9px !important;
+  width:20px !important;
+  height:20px !important;
+  font-size:11px !important;
+}
+
+/* ---------- Result summary ---------- */
+
+body.portal-mode #pageRemedialStatus
+.retest-result-summary{
+  width:max-content !important;
+  max-width:calc(100% - 28px) !important;
+  margin:0 14px 10px auto !important;
+  padding:7px 10px !important;
+  border:1px solid #bbf7d0;
+  border-radius:999px;
+  color:#15803d !important;
+  background:#f0fdf4;
+  font-size:10.5px !important;
+  line-height:1.4 !important;
+  text-align:right !important;
+  white-space:normal !important;
+}
+
+/* ---------- Table to cards ---------- */
+
+body.portal-mode #pageRemedialStatus
+.retest-table-wrap{
+  width:100% !important;
+  max-width:100% !important;
+  margin:0 !important;
+  padding:0 14px 14px !important;
+  overflow:visible !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table{
+  display:block !important;
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  table-layout:auto !important;
+  background:transparent !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table thead{
+  display:none !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table tbody{
+  display:grid !important;
+  width:100% !important;
+  gap:10px !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table tbody tr{
+  display:grid !important;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr))
+    !important;
+  grid-template-areas:
+    "code period"
+    "subject subject"
+    "area area"
+    "teacher teacher"
+    "original approved"
+    "status status"
+    !important;
+
+  width:100% !important;
+  min-width:0 !important;
+  overflow:hidden !important;
+
+  border:1px solid #dce7f2 !important;
+  border-left-width:4px !important;
+  border-radius:18px !important;
+  background:#ffffff !important;
+  box-shadow:0 8px 18px rgba(15,23,42,.05);
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table tbody tr.unresolved{
+  border-left-color:#ef4444 !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table tbody tr.pending{
+  border-left-color:#f59e0b !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table tbody tr.approved{
+  border-left-color:#22c55e !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table tbody td{
+  display:flex !important;
+  align-items:flex-start !important;
+  justify-content:space-between !important;
+  gap:8px !important;
+
+  width:auto !important;
+  min-width:0 !important;
+  max-width:none !important;
+  padding:10px !important;
+
+  border-right:0 !important;
+  border-bottom:1px solid #edf2f7 !important;
+  background:#ffffff !important;
+
+  color:#17324a !important;
+  text-align:right !important;
+  white-space:normal !important;
+  word-break:normal !important;
+  overflow-wrap:anywhere !important;
+  overflow:visible !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table tbody td::before{
+  content:attr(data-label);
+  flex:0 0 auto;
+  max-width:46%;
+  color:#718195;
+  font-size:10px;
+  line-height:1.4;
+  font-weight:700;
+  text-align:left;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table tbody td:nth-child(1){
+  grid-area:code !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table tbody td:nth-child(2){
+  grid-area:subject !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table tbody td:nth-child(3){
+  grid-area:period !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table tbody td:nth-child(4){
+  grid-area:area !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table tbody td:nth-child(5){
+  grid-area:teacher !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table tbody td:nth-child(6){
+  grid-area:original !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table tbody td:nth-child(7){
+  grid-area:approved !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table tbody td:nth-child(8){
+  grid-area:status !important;
+  align-items:center !important;
+  padding-top:11px !important;
+  padding-bottom:11px !important;
+  border-bottom:0 !important;
+  background:#f8fbff !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table td[data-label="รายวิชา"]{
+  padding-top:12px !important;
+  padding-bottom:12px !important;
+  color:#17324a !important;
+  font-weight:900 !important;
+  background:#fbfdff !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table td[data-label="กลุ่มสาระ"],
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table td[data-label="ครูผู้สอน"]{
+  color:#52677d !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-grade-pill{
+  min-width:52px !important;
+  min-height:31px !important;
+  padding:5px 9px !important;
+  font-size:13px !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-status-pill{
+  min-width:92px !important;
+  min-height:31px !important;
+  padding:5px 9px !important;
+  font-size:10.5px !important;
+}
+
+/* empty state */
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table tbody tr:has(.empty-state){
+  display:block !important;
+  border-left-width:1px !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table .empty-state{
+  display:block !important;
+  width:100% !important;
+  padding:28px 16px !important;
+  border:0 !important;
+  text-align:center !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table .empty-state::before{
+  display:none !important;
+}
+
+/* จอแคบมาก */
+@media (max-width:360px){
+  body.portal-mode #pageRemedialStatus
+  .retest-filter-grid,
+  body.portal-mode #pageRemedialStatus
+  .remedial-kpi-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  body.portal-mode #pageRemedialStatus
+  .retest-filter-field:nth-child(n){
+    grid-column:1 !important;
+  }
+
+  body.portal-mode #pageRemedialStatus
+  .retest-tracking-table tbody tr{
+    grid-template-columns:1fr !important;
+    grid-template-areas:
+      "code"
+      "period"
+      "subject"
+      "area"
+      "teacher"
+      "original"
+      "approved"
+      "status"
+      !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -9991,23 +10535,37 @@ body.portal-mode #pageRisk
          หัวข้อหน้า
          ========================= -->
     <div class="retest-tracking-head">
-      <div>
-        <h2 class="retest-tracking-title">
-          ติดตามการสอบแก้ตัว
-        </h2>
 
-        <p class="retest-tracking-subtitle">
-          แสดงประวัติรายวิชาที่เคยมีผลการเรียน 0, ร, มส และ มผ
-          พร้อมติดตามสถานะการแก้ไขผลการเรียน
-        </p>
-      </div>
+  <div class="retest-tracking-heading">
+
+    <div
+      class="retest-tracking-heading-icon"
+      aria-hidden="true"
+    >
+      📝
     </div>
 
+    <div>
+      <div class="retest-tracking-kicker">
+        REMEDIAL TRACKING
+      </div>
 
-    <!-- =========================
-         ตัวกรองข้อมูล
-         ========================= -->
-    <div class="retest-filter-section">
+      <h2 class="retest-tracking-title">
+        ติดตามการสอบแก้ตัว
+      </h2>
+
+      <p class="retest-tracking-subtitle">
+        ตรวจสอบรายวิชาที่มีผลการเรียน 0, ร, มส และ มผ
+        พร้อมติดตามสถานะการแก้ไขผลการเรียน
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="retest-filter-section">
 
       <div class="retest-filter-grid">
 
@@ -10110,15 +10668,21 @@ body.portal-mode #pageRisk
         type="button"
         data-remedial-filter="all"
       >
-        <span class="remedial-kpi-label">
-          รายการทั้งหมด
+        <span class="remedial-kpi-icon">
+          📋
         </span>
 
-        <span
-          class="remedial-kpi-value"
-          id="remedialKpiAll"
-        >
-          0
+        <span class="remedial-kpi-content">
+          <span class="remedial-kpi-label">
+            รายการทั้งหมด
+          </span>
+
+          <span
+            class="remedial-kpi-value"
+            id="remedialKpiAll"
+          >
+            0
+          </span>
         </span>
       </button>
 
@@ -10128,15 +10692,21 @@ body.portal-mode #pageRisk
         type="button"
         data-remedial-filter="unresolved"
       >
-        <span class="remedial-kpi-label">
-          ยังไม่แก้
+        <span class="remedial-kpi-icon">
+          ❗
         </span>
 
-        <span
-          class="remedial-kpi-value"
-          id="remedialKpiUnresolved"
-        >
-          0
+        <span class="remedial-kpi-content">
+          <span class="remedial-kpi-label">
+            ยังไม่แก้
+          </span>
+
+          <span
+            class="remedial-kpi-value"
+            id="remedialKpiUnresolved"
+          >
+            0
+          </span>
         </span>
       </button>
 
@@ -10146,15 +10716,21 @@ body.portal-mode #pageRisk
         type="button"
         data-remedial-filter="pending"
       >
-        <span class="remedial-kpi-label">
-          รออนุมัติ
+        <span class="remedial-kpi-icon">
+          ⏳
         </span>
 
-        <span
-          class="remedial-kpi-value"
-          id="remedialKpiPending"
-        >
-          0
+        <span class="remedial-kpi-content">
+          <span class="remedial-kpi-label">
+            รออนุมัติ
+          </span>
+
+          <span
+            class="remedial-kpi-value"
+            id="remedialKpiPending"
+          >
+            0
+          </span>
         </span>
       </button>
 
@@ -10164,25 +10740,28 @@ body.portal-mode #pageRisk
         type="button"
         data-remedial-filter="approved"
       >
-        <span class="remedial-kpi-label">
-          อนุมัติแล้ว
+        <span class="remedial-kpi-icon">
+          ✅
         </span>
 
-        <span
-          class="remedial-kpi-value"
-          id="remedialKpiApproved"
-        >
-          0
+        <span class="remedial-kpi-content">
+          <span class="remedial-kpi-label">
+            อนุมัติแล้ว
+          </span>
+
+          <span
+            class="remedial-kpi-value"
+            id="remedialKpiApproved"
+          >
+            0
+          </span>
         </span>
       </button>
 
     </div>
 
 
-    <!-- =========================
-         สรุปจำนวนรายการ
-         ========================= -->
-    <div
+<div
       class="retest-result-summary"
       id="remedialResultSummary"
     >
@@ -15680,7 +16259,7 @@ function renderRemedialStatus(){
       getRemedialStatusKey(item);
 
     return `
-      <tr>
+      <tr class="retest-row ${escapeHtml(statusKey)}">
 
         <td data-label="รหัสวิชา">
           ${escapeHtml(subjectCode)}
