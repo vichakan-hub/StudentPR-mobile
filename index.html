@@ -7206,6 +7206,389 @@ body.portal-mode .home-status-card{
   }
 }
 
+
+/* =====================================================
+   StudentPR Mobile — Grade Pages Shell Fix
+   แก้ layout ตามความกว้างของ mobile shell 430px
+   ไม่อาศัย viewport ของ browser
+   ===================================================== */
+
+/* ---------- ภาพรวมผลการเรียน ---------- */
+
+body.portal-mode #pageGradeOverview{
+  width:100% !important;
+  min-width:0 !important;
+}
+
+body.portal-mode #pageGradeOverview .student-head{
+  padding:15px !important;
+  overflow:visible !important;
+}
+
+body.portal-mode #pageGradeOverview .student-top{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:9px !important;
+}
+
+body.portal-mode #pageGradeOverview .student-subtitle{
+  margin:0 !important;
+  font-size:12px !important;
+  line-height:1.55 !important;
+}
+
+body.portal-mode #pageGradeOverview .hero-chip{
+  width:max-content !important;
+  max-width:100% !important;
+  margin:0 !important;
+  padding:7px 11px !important;
+  font-size:10.5px !important;
+  line-height:1.3 !important;
+  white-space:normal !important;
+}
+
+/* ชื่อเต็มแถว / รหัส+จำนวนเทอม / หน่วยกิต+GPAX+PR */
+body.portal-mode #pageGradeOverview .student-meta.overview-meta{
+  display:grid !important;
+  grid-template-columns:repeat(6, minmax(0, 1fr)) !important;
+  gap:8px !important;
+  margin-top:12px !important;
+  width:100% !important;
+  min-width:0 !important;
+}
+
+body.portal-mode #pageGradeOverview .overview-meta .meta-item{
+  min-width:0 !important;
+  min-height:70px !important;
+  padding:10px 11px !important;
+  border-radius:14px !important;
+}
+
+body.portal-mode #pageGradeOverview .overview-meta .meta-item:nth-child(2){
+  order:-1 !important;
+  grid-column:1 / -1 !important;
+}
+
+body.portal-mode #pageGradeOverview .overview-meta .meta-item:nth-child(1),
+body.portal-mode #pageGradeOverview .overview-meta .meta-item:nth-child(3){
+  grid-column:span 3 !important;
+}
+
+body.portal-mode #pageGradeOverview .overview-meta .meta-item:nth-child(4),
+body.portal-mode #pageGradeOverview .overview-meta .meta-item:nth-child(5),
+body.portal-mode #pageGradeOverview .overview-meta .meta-item:nth-child(6){
+  grid-column:span 2 !important;
+}
+
+body.portal-mode #pageGradeOverview .overview-meta .meta-label{
+  margin-bottom:5px !important;
+  font-size:10px !important;
+  line-height:1.35 !important;
+}
+
+body.portal-mode #pageGradeOverview .overview-meta .meta-value{
+  font-size:14px !important;
+  line-height:1.35 !important;
+  word-break:normal !important;
+  overflow-wrap:anywhere !important;
+}
+
+body.portal-mode #pageGradeOverview .overview-meta .percentile-value{
+  font-size:16px !important;
+}
+
+/* การ์ด GPAX และกราฟต้องเรียงลง ไม่วางคู่กัน */
+body.portal-mode #pageGradeOverview .panel-grid,
+body.portal-mode #pageGrades .panel-grid{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:12px !important;
+  width:100% !important;
+  min-width:0 !important;
+}
+
+body.portal-mode #pageGradeOverview .summary-card,
+body.portal-mode #pageGradeOverview .term-gpa-card,
+body.portal-mode #pageGradeOverview .radar-card,
+body.portal-mode #pageGrades .summary-card,
+body.portal-mode #pageGrades .radar-card{
+  width:100% !important;
+  min-width:0 !important;
+  overflow:hidden !important;
+}
+
+body.portal-mode #pageGradeOverview .summary-head,
+body.portal-mode #pageGradeOverview .term-gpa-head,
+body.portal-mode #pageGradeOverview .radar-head,
+body.portal-mode #pageGrades .summary-head,
+body.portal-mode #pageGrades .radar-head{
+  padding:15px !important;
+}
+
+body.portal-mode #pageGradeOverview .summary-title,
+body.portal-mode #pageGradeOverview .term-gpa-title,
+body.portal-mode #pageGradeOverview .radar-title,
+body.portal-mode #pageGrades .summary-title,
+body.portal-mode #pageGrades .radar-title{
+  font-size:17px !important;
+  line-height:1.4 !important;
+}
+
+body.portal-mode #pageGradeOverview .summary-subtitle,
+body.portal-mode #pageGradeOverview .term-gpa-subtitle,
+body.portal-mode #pageGradeOverview .radar-subtitle,
+body.portal-mode #pageGrades .summary-subtitle,
+body.portal-mode #pageGrades .radar-subtitle{
+  font-size:11px !important;
+  line-height:1.5 !important;
+}
+
+/* ตารางสรุปให้พอดีการ์ด ไม่มี scrollbar */
+body.portal-mode #pageGradeOverview .summary-table-wrap,
+body.portal-mode #pageGrades .summary-table-wrap{
+  padding:10px !important;
+  overflow:hidden !important;
+}
+
+body.portal-mode #pageGradeOverview .summary-no-scroll,
+body.portal-mode #pageGrades .summary-no-scroll{
+  width:100% !important;
+  overflow:hidden !important;
+  border-radius:14px !important;
+}
+
+body.portal-mode #pageGradeOverview .summary-table,
+body.portal-mode #pageGrades .summary-table{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  table-layout:fixed !important;
+  font-size:11px !important;
+}
+
+body.portal-mode #pageGradeOverview .summary-table th,
+body.portal-mode #pageGradeOverview .summary-table td,
+body.portal-mode #pageGrades .summary-table th,
+body.portal-mode #pageGrades .summary-table td{
+  min-width:0 !important;
+  max-width:none !important;
+  padding:9px 6px !important;
+  font-size:10.5px !important;
+  line-height:1.45 !important;
+  white-space:normal !important;
+  word-break:normal !important;
+  overflow-wrap:anywhere !important;
+}
+
+body.portal-mode #pageGradeOverview .summary-table .label-cell,
+body.portal-mode #pageGrades .summary-table .label-cell{
+  width:56% !important;
+  min-width:0 !important;
+}
+
+body.portal-mode #pageGradeOverview .summary-table .value-cell,
+body.portal-mode #pageGrades .summary-table .value-cell{
+  width:22% !important;
+  min-width:0 !important;
+  max-width:none !important;
+  text-align:center !important;
+}
+
+/* กราฟเต็มความกว้าง */
+body.portal-mode #pageGradeOverview .term-gpa-body,
+body.portal-mode #pageGradeOverview .radar-body,
+body.portal-mode #pageGrades .radar-body{
+  padding:10px !important;
+}
+
+body.portal-mode #pageGradeOverview .term-gpa-chart-wrap{
+  width:100% !important;
+  height:270px !important;
+  padding:8px !important;
+  overflow:hidden !important;
+}
+
+body.portal-mode #pageGradeOverview .radar-chart-wrap,
+body.portal-mode #pageGrades .radar-chart-wrap{
+  width:100% !important;
+  height:285px !important;
+  padding:8px !important;
+  overflow:hidden !important;
+}
+
+body.portal-mode #pageGradeOverview .radar-score-list,
+body.portal-mode #pageGrades .radar-score-list{
+  grid-template-columns:1fr !important;
+}
+
+/* ---------- ผลการเรียนรายภาคเรียน ---------- */
+
+body.portal-mode #pageGrades{
+  width:100% !important;
+  min-width:0 !important;
+}
+
+body.portal-mode #pageGrades .student-head{
+  padding:15px !important;
+}
+
+body.portal-mode #pageGrades .student-top{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:12px !important;
+}
+
+body.portal-mode #pageGrades .term-select-box{
+  width:100% !important;
+  min-width:0 !important;
+}
+
+body.portal-mode #pageGrades .student-meta{
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  gap:8px !important;
+  margin-top:12px !important;
+}
+
+body.portal-mode #pageGrades .student-meta .meta-item{
+  min-width:0 !important;
+  min-height:70px !important;
+  padding:10px 11px !important;
+  border-radius:14px !important;
+}
+
+body.portal-mode #pageGrades .student-meta .meta-item:nth-child(2),
+body.portal-mode #pageGrades .student-meta .meta-item:nth-child(5){
+  grid-column:1 / -1 !important;
+}
+
+/* ตารางรายวิชาเปลี่ยนเป็นการ์ดเสมอใน mobile shell */
+body.portal-mode #pageGrades .table-pad{
+  padding:10px !important;
+}
+
+body.portal-mode #pageGrades .grade-table-wrap{
+  width:100% !important;
+  max-width:100% !important;
+  overflow:visible !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+}
+
+body.portal-mode #pageGrades .grade-report-table{
+  display:block !important;
+  width:100% !important;
+  min-width:0 !important;
+  max-width:100% !important;
+  table-layout:auto !important;
+  background:transparent !important;
+}
+
+body.portal-mode #pageGrades .grade-report-table colgroup,
+body.portal-mode #pageGrades .grade-report-table thead{
+  display:none !important;
+}
+
+body.portal-mode #pageGrades .grade-report-table tbody{
+  display:grid !important;
+  width:100% !important;
+  gap:10px !important;
+}
+
+body.portal-mode #pageGrades .grade-report-table tbody tr{
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  width:100% !important;
+  overflow:hidden !important;
+  border:1px solid #dce7f2 !important;
+  border-radius:17px !important;
+  background:#ffffff !important;
+  box-shadow:0 7px 17px rgba(15,23,42,.05) !important;
+}
+
+body.portal-mode #pageGrades .grade-report-table tbody td{
+  display:flex !important;
+  align-items:flex-start !important;
+  justify-content:space-between !important;
+  gap:8px !important;
+  width:auto !important;
+  min-width:0 !important;
+  max-width:none !important;
+  padding:10px !important;
+  border-right:0 !important;
+  border-bottom:1px solid #edf2f7 !important;
+  background:#ffffff !important;
+  text-align:right !important;
+  white-space:normal !important;
+  word-break:normal !important;
+  overflow-wrap:anywhere !important;
+  overflow:visible !important;
+}
+
+body.portal-mode #pageGrades .grade-report-table tbody td::before{
+  content:attr(data-label);
+  flex:0 0 auto;
+  max-width:47%;
+  color:#718195;
+  font-size:10px;
+  line-height:1.4;
+  font-weight:700;
+  text-align:left;
+}
+
+body.portal-mode #pageGrades .grade-report-table td[data-label="รายวิชา"],
+body.portal-mode #pageGrades .grade-report-table td[data-label="ครูผู้สอน"]{
+  grid-column:1 / -1 !important;
+}
+
+body.portal-mode #pageGrades .grade-report-table tbody tr td:last-child{
+  border-bottom:0 !important;
+}
+
+body.portal-mode #pageGrades .grade-report-table tbody tr:has(.empty-state){
+  display:block !important;
+}
+
+body.portal-mode #pageGrades .grade-report-table .empty-state{
+  display:block !important;
+  width:100% !important;
+  padding:26px 15px !important;
+  text-align:center !important;
+}
+
+body.portal-mode #pageGrades .grade-report-table .empty-state::before{
+  display:none !important;
+}
+
+body.portal-mode #pageGrades .grade-report-table .score-badge,
+body.portal-mode #pageGrades .grade-report-table .grade-pill,
+body.portal-mode #pageGrades .grade-report-table .type-pill{
+  flex:0 0 auto !important;
+}
+
+/* จอแคบมากให้การ์ดข้อมูลเป็นหนึ่งคอลัมน์ */
+@media (max-width:360px){
+  body.portal-mode #pageGradeOverview .student-meta.overview-meta{
+    grid-template-columns:1fr !important;
+  }
+
+  body.portal-mode #pageGradeOverview .overview-meta .meta-item,
+  body.portal-mode #pageGradeOverview .overview-meta .meta-item:nth-child(n){
+    grid-column:1 !important;
+  }
+
+  body.portal-mode #pageGrades .student-meta,
+  body.portal-mode #pageGrades .grade-report-table tbody tr{
+    grid-template-columns:1fr !important;
+  }
+
+  body.portal-mode #pageGrades .student-meta .meta-item:nth-child(n),
+  body.portal-mode #pageGrades .grade-report-table td[data-label]{
+    grid-column:1 !important;
+  }
+}
+
 </style>
 </head>
 <body>
