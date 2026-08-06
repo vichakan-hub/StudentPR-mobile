@@ -8973,6 +8973,43 @@ body.portal-mode #pageRemedialStatus
   }
 }
 
+
+/* =====================================================
+   StudentPR Mobile — Hide Learning Area From Remedial Cards
+   ตัดแถวกลุ่มสาระออกจากการ์ดสอบแก้ตัว
+   ===================================================== */
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table tbody tr{
+  grid-template-areas:
+    "code period"
+    "subject subject"
+    "teacher teacher"
+    "original approved"
+    "status status"
+    !important;
+}
+
+body.portal-mode #pageRemedialStatus
+.retest-tracking-table td[data-label="กลุ่มสาระ"]{
+  display:none !important;
+}
+
+@media (max-width:360px){
+  body.portal-mode #pageRemedialStatus
+  .retest-tracking-table tbody tr{
+    grid-template-areas:
+      "code"
+      "period"
+      "subject"
+      "teacher"
+      "original"
+      "approved"
+      "status"
+      !important;
+  }
+}
+
 </style>
 </head>
 <body>
