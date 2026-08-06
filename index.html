@@ -9028,6 +9028,117 @@ body.portal-mode #pageRemedialStatus
   grid-column:1 / -1 !important;
 }
 
+
+/* =====================================================
+   StudentPR Mobile — Remember Me
+   ===================================================== */
+
+.student-login-remember-row{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin:0 0 2px;
+  padding:2px 1px;
+}
+
+.student-login-remember-option{
+  position:relative;
+  min-width:0;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  color:#294663;
+  font-size:13px;
+  line-height:1.4;
+  font-weight:800;
+  cursor:pointer;
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.student-login-remember-option input{
+  position:absolute;
+  width:1px;
+  height:1px;
+  opacity:0;
+  pointer-events:none;
+}
+
+.student-login-remember-box{
+  position:relative;
+  width:22px;
+  height:22px;
+  display:grid;
+  place-items:center;
+  flex:0 0 22px;
+  border:1.5px solid #b7cbe0;
+  border-radius:7px;
+  background:#ffffff;
+  transition:.16s ease;
+  box-shadow:inset 0 1px 2px rgba(15,23,42,.03);
+}
+
+.student-login-remember-option
+input:checked +
+.student-login-remember-box{
+  border-color:#2563eb;
+  background:#2563eb;
+  box-shadow:0 6px 13px rgba(37,99,235,.20);
+}
+
+.student-login-remember-option
+input:checked +
+.student-login-remember-box::after{
+  content:'✓';
+  color:#ffffff;
+  font-family:'Sarabun',sans-serif;
+  font-size:15px;
+  line-height:1;
+  font-weight:900;
+}
+
+.student-login-remember-option
+input:focus-visible +
+.student-login-remember-box{
+  outline:3px solid rgba(37,99,235,.18);
+  outline-offset:2px;
+}
+
+.student-login-remember-option
+input:disabled +
+.student-login-remember-box{
+  cursor:wait;
+  opacity:.55;
+}
+
+.student-login-remember-label{
+  white-space:nowrap;
+}
+
+.student-login-remember-hint{
+  min-width:0;
+  color:#7a8da2;
+  font-size:10.5px;
+  line-height:1.4;
+  font-weight:600;
+  text-align:right;
+}
+
+@media (max-width:360px){
+  .student-login-remember-row{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:5px;
+  }
+
+  .student-login-remember-hint{
+    padding-left:31px;
+    text-align:left;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -9190,6 +9301,35 @@ body.portal-mode #pageRemedialStatus
             </button>
 
           </div>
+
+        </div>
+
+
+        <div class="student-login-remember-row">
+
+          <label
+            class="student-login-remember-option"
+            for="rememberMe"
+          >
+            <input
+              id="rememberMe"
+              name="rememberMe"
+              type="checkbox"
+            >
+
+            <span
+              class="student-login-remember-box"
+              aria-hidden="true"
+            ></span>
+
+            <span class="student-login-remember-label">
+              จดจำฉันไว้
+            </span>
+          </label>
+
+          <span class="student-login-remember-hint">
+            ใช้เฉพาะอุปกรณ์ส่วนตัว
+          </span>
 
         </div>
 
@@ -12100,28 +12240,266 @@ function buildSummaryFromRows(rows){
   return result;
 }
 
-    function saveSession(){
-      const payload = {
-        currentUser: APP_STATE.currentUser,
-        studentProfile: APP_STATE.studentProfile
-      };
-      sessionStorage.setItem('student_portal_session', JSON.stringify(payload));
+    /* =====================================================
+       StudentPR Mobile — Remember Me
+       เก็บเฉพาะ Session และเลขประจำตัวนักเรียน
+       ไม่บันทึกรหัสผ่านลงใน Browser Storage
+       ===================================================== */
+
+    const STUDENT_SESSION_KEY =
+      'student_portal_session';
+
+    const STUDENT_PERSISTENT_SESSION_KEY =
+      'student_portal_persistent_session';
+
+    const STUDENT_REMEMBER_PREF_KEY =
+      'student_portal_remember_me';
+
+    const STUDENT_REMEMBERED_CODE_KEY =
+      'student_portal_remembered_code';
+
+
+    function isRememberMeSelected(){
+      return Boolean(
+        $('rememberMe')?.checked
+      );
     }
 
-    function clearSession(){
-      sessionStorage.removeItem('student_portal_session');
-    }
 
-    function restoreSession(){
-      const raw = sessionStorage.getItem('student_portal_session');
-      if(!raw) return false;
+    function saveRememberedLoginPreference(
+      studentCode
+    ){
+      const shouldRemember =
+        isRememberMeSelected();
 
       try{
-        const parsed = JSON.parse(raw);
-        APP_STATE.currentUser = parsed.currentUser || null;
-        APP_STATE.studentProfile = parsed.studentProfile || null;
-        return !!(APP_STATE.currentUser && APP_STATE.studentProfile);
+        if(shouldRemember){
+          localStorage.setItem(
+            STUDENT_REMEMBER_PREF_KEY,
+            '1'
+          );
+
+          localStorage.setItem(
+            STUDENT_REMEMBERED_CODE_KEY,
+            String(studentCode || '').trim()
+          );
+
+          return;
+        }
+
+        localStorage.removeItem(
+          STUDENT_REMEMBER_PREF_KEY
+        );
+
+        localStorage.removeItem(
+          STUDENT_REMEMBERED_CODE_KEY
+        );
+
+        localStorage.removeItem(
+          STUDENT_PERSISTENT_SESSION_KEY
+        );
+
       }catch(error){
+        console.warn(
+          'SAVE REMEMBER PREFERENCE SKIPPED =',
+          error
+        );
+      }
+    }
+
+
+    function restoreRememberedLoginPreference(){
+      let shouldRemember = false;
+      let rememberedCode = '';
+
+      try{
+        shouldRemember =
+          localStorage.getItem(
+            STUDENT_REMEMBER_PREF_KEY
+          ) === '1';
+
+        rememberedCode =
+          shouldRemember
+            ? String(
+                localStorage.getItem(
+                  STUDENT_REMEMBERED_CODE_KEY
+                ) || ''
+              ).trim()
+            : '';
+
+      }catch(error){
+        shouldRemember = false;
+        rememberedCode = '';
+      }
+
+
+      if($('rememberMe')){
+        $('rememberMe').checked =
+          shouldRemember;
+      }
+
+
+      if(
+        shouldRemember &&
+        rememberedCode &&
+        $('studentCode')
+      ){
+        $('studentCode').value =
+          rememberedCode;
+      }
+
+
+      return shouldRemember;
+    }
+
+
+    function saveSession(){
+      const payload = {
+        currentUser:
+          APP_STATE.currentUser,
+
+        studentProfile:
+          APP_STATE.studentProfile,
+
+        savedAt:
+          new Date().toISOString()
+      };
+
+      const serialized =
+        JSON.stringify(payload);
+
+      const shouldRemember =
+        isRememberMeSelected();
+
+
+      try{
+        if(shouldRemember){
+          localStorage.setItem(
+            STUDENT_PERSISTENT_SESSION_KEY,
+            serialized
+          );
+
+          sessionStorage.removeItem(
+            STUDENT_SESSION_KEY
+          );
+
+          return;
+        }
+
+        sessionStorage.setItem(
+          STUDENT_SESSION_KEY,
+          serialized
+        );
+
+        localStorage.removeItem(
+          STUDENT_PERSISTENT_SESSION_KEY
+        );
+
+      }catch(error){
+        /*
+         * หาก localStorage ใช้งานไม่ได้
+         * ให้ fallback เป็น sessionStorage
+         */
+        try{
+          sessionStorage.setItem(
+            STUDENT_SESSION_KEY,
+            serialized
+          );
+        }catch(storageError){
+          console.warn(
+            'SAVE STUDENT SESSION SKIPPED =',
+            storageError
+          );
+        }
+      }
+    }
+
+
+    function clearSession(){
+      try{
+        sessionStorage.removeItem(
+          STUDENT_SESSION_KEY
+        );
+      }catch(error){
+        // ข้ามได้
+      }
+
+      try{
+        localStorage.removeItem(
+          STUDENT_PERSISTENT_SESSION_KEY
+        );
+      }catch(error){
+        // ข้ามได้
+      }
+    }
+
+
+    function restoreSession(){
+      let raw = null;
+      let restoredFromPersistent = false;
+
+      try{
+        raw =
+          sessionStorage.getItem(
+            STUDENT_SESSION_KEY
+          );
+
+        if(!raw){
+          raw =
+            localStorage.getItem(
+              STUDENT_PERSISTENT_SESSION_KEY
+            );
+
+          restoredFromPersistent =
+            Boolean(raw);
+        }
+
+      }catch(error){
+        raw = null;
+      }
+
+
+      if(!raw){
+        return false;
+      }
+
+
+      try{
+        const parsed =
+          JSON.parse(raw);
+
+        APP_STATE.currentUser =
+          parsed?.currentUser || null;
+
+        APP_STATE.studentProfile =
+          parsed?.studentProfile || null;
+
+
+        const validSession =
+          Boolean(
+            APP_STATE.currentUser &&
+            APP_STATE.studentProfile
+          );
+
+
+        if(!validSession){
+          clearSession();
+          return false;
+        }
+
+
+        if(
+          restoredFromPersistent &&
+          $('rememberMe')
+        ){
+          $('rememberMe').checked = true;
+        }
+
+
+        return true;
+
+      }catch(error){
+        clearSession();
         return false;
       }
     }
@@ -16356,6 +16734,9 @@ function setStudentLoginBusy(busy){
   const passwordToggle =
     $('studentPasswordToggleBtn');
 
+  const rememberMeInput =
+    $('rememberMe');
+
 
   if(loginButton){
     loginButton.disabled =
@@ -16408,6 +16789,12 @@ function setStudentLoginBusy(busy){
     passwordToggle.disabled =
       Boolean(busy);
   }
+
+
+  if(rememberMeInput){
+    rememberMeInput.disabled =
+      Boolean(busy);
+  }
 }
 
 async function handleLoginSubmit(event){
@@ -16446,6 +16833,15 @@ try{
   );
 
         const loginResult = await loginStudent(studentCode, password);
+
+        /*
+         * บันทึกเฉพาะเลขประจำตัวและสถานะ Remember Me
+         * ไม่บันทึกรหัสผ่าน
+         */
+        saveRememberedLoginPreference(
+          studentCode
+        );
+
         APP_STATE.currentUser = loginResult.user || null;
         APP_STATE.studentProfile = null;
         APP_STATE.availableTerms = [];
@@ -16471,6 +16867,18 @@ APP_STATE.riskFilters = {
         setLoginStatus('', false);
 
         await loadPortalData(false);
+
+        /*
+         * ไม่เก็บรหัสผ่านไว้ใน DOM หลังเข้าสู่ระบบสำเร็จ
+         */
+        if($('password')){
+          $('password').value = '';
+        }
+
+        setStudentPasswordVisible(
+          false
+        );
+
 }catch(error){
   console.error(
     'LOGIN OR PORTAL LOAD ERROR =',
@@ -16576,8 +16984,19 @@ renderStudentRiskPage();
       setPortalVisible(false);
       setActiveMenu('home');
 
-$('studentCode').value = '';
-$('password').value = '';
+if($('studentCode')){
+  $('studentCode').value = '';
+}
+
+if($('password')){
+  $('password').value = '';
+}
+
+/*
+ * หากเคยเลือก “จดจำฉันไว้”
+ * ให้เติมเลขประจำตัวกลับมา แต่ไม่ Auto Login หลัง Logout
+ */
+restoreRememberedLoginPreference();
 
 setStudentPasswordVisible(
   false
@@ -17491,10 +17910,25 @@ function setStudentPasswordVisible(visible){
 }
 
 function initLoginEvents(){
+  restoreRememberedLoginPreference();
+
   $('loginForm')
     ?.addEventListener(
       'submit',
       handleLoginSubmit
+    );
+
+
+  $('rememberMe')
+    ?.addEventListener(
+      'change',
+      () => {
+        if(isRememberMeSelected()){
+          return;
+        }
+
+        saveRememberedLoginPreference('');
+      }
     );
 
 
