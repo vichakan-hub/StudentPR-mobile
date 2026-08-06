@@ -9139,6 +9139,121 @@ input:disabled +
   }
 }
 
+
+/* =====================================================
+   StudentPR Mobile — Balanced Risk KPI
+   รูปแบบ: ยอดรวมเต็มแถว + KPI สถานะ 4 ช่องแบบ 2 x 2
+   ===================================================== */
+
+body.portal-mode #pageRisk
+.student-risk-kpi-grid{
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr))
+    !important;
+
+  gap:10px !important;
+  padding:0 14px 13px !important;
+}
+
+/* รายวิชาที่รายงานเต็มแถว */
+body.portal-mode #pageRisk
+.student-risk-kpi.all{
+  grid-column:1 / -1 !important;
+  min-height:82px !important;
+}
+
+/* KPI ที่เหลือทุกใบกว้างเท่ากัน */
+body.portal-mode #pageRisk
+.student-risk-kpi.normal,
+body.portal-mode #pageRisk
+.student-risk-kpi.score,
+body.portal-mode #pageRisk
+.student-risk-kpi.attendance,
+body.portal-mode #pageRisk
+.student-risk-kpi.incomplete,
+body.portal-mode #pageRisk
+.student-risk-kpi.incomplete:last-child{
+  grid-column:auto !important;
+  min-height:106px !important;
+}
+
+/* จัดเนื้อหาให้สมดุลและไม่บีบข้อความ */
+body.portal-mode #pageRisk
+.student-risk-kpi{
+  min-width:0 !important;
+  padding:13px !important;
+  align-items:center !important;
+  gap:10px !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-kpi-icon{
+  width:40px !important;
+  height:40px !important;
+  flex:0 0 40px !important;
+  border-radius:13px !important;
+  font-size:19px !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-kpi-content{
+  min-width:0 !important;
+  width:100% !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-kpi-label{
+  font-size:11px !important;
+  line-height:1.4 !important;
+  white-space:normal !important;
+  word-break:normal !important;
+  overflow-wrap:normal !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-kpi-value{
+  margin-top:4px !important;
+  font-size:27px !important;
+  line-height:1 !important;
+}
+
+/* เครื่องหมายเลือกไม่ชนข้อความ */
+body.portal-mode #pageRisk
+.student-risk-kpi.active{
+  padding-right:35px !important;
+}
+
+body.portal-mode #pageRisk
+.student-risk-kpi.active::after{
+  top:8px !important;
+  right:8px !important;
+  width:21px !important;
+  height:21px !important;
+  font-size:11px !important;
+}
+
+/* จอแคบมากค่อยเรียงทีละช่อง */
+@media (max-width:340px){
+  body.portal-mode #pageRisk
+  .student-risk-kpi-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  body.portal-mode #pageRisk
+  .student-risk-kpi.all,
+  body.portal-mode #pageRisk
+  .student-risk-kpi.normal,
+  body.portal-mode #pageRisk
+  .student-risk-kpi.score,
+  body.portal-mode #pageRisk
+  .student-risk-kpi.attendance,
+  body.portal-mode #pageRisk
+  .student-risk-kpi.incomplete{
+    grid-column:1 !important;
+    min-height:82px !important;
+  }
+}
+
 </style>
 </head>
 <body>
