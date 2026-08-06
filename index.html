@@ -7109,6 +7109,103 @@ body.portal-mode .app{
   }
 }
 
+
+
+/* =====================================================
+   FINAL FIX : Home KPI สำหรับ StudentPR Mobile shell
+   ป้องกันการ์ดถูกบีบเมื่อเปิดบนจอคอม แต่ตัวแอปกว้าง 430px
+   ===================================================== */
+
+/* ความเสี่ยงของฉัน: ยอดรวมเต็มแถว + ความเสี่ยง 2 ช่อง */
+body.portal-mode .home-risk-summary-grid{
+  grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  gap:10px !important;
+}
+
+body.portal-mode .home-risk-summary-card.all{
+  grid-column:1 / -1 !important;
+  min-height:88px !important;
+  flex-direction:row !important;
+  align-items:center !important;
+}
+
+body.portal-mode .home-risk-summary-card.score,
+body.portal-mode .home-risk-summary-card.attendance{
+  min-height:112px !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  justify-content:center !important;
+  gap:7px !important;
+}
+
+body.portal-mode .home-risk-summary-card{
+  min-width:0 !important;
+  padding:14px 38px 14px 14px !important;
+}
+
+body.portal-mode .home-risk-summary-icon{
+  width:42px !important;
+  height:42px !important;
+  flex:0 0 42px !important;
+  border-radius:14px !important;
+  font-size:21px !important;
+}
+
+body.portal-mode .home-risk-summary-card > div:nth-child(2){
+  min-width:0 !important;
+  width:100% !important;
+}
+
+body.portal-mode .home-risk-summary-label{
+  font-size:12px !important;
+  line-height:1.4 !important;
+  white-space:normal !important;
+  word-break:normal !important;
+  overflow-wrap:normal !important;
+}
+
+body.portal-mode .home-risk-summary-value{
+  margin-top:3px !important;
+  font-size:27px !important;
+}
+
+body.portal-mode .home-risk-summary-open{
+  display:none !important;
+}
+
+body.portal-mode .home-risk-summary-arrow{
+  right:12px !important;
+}
+
+/* รายการที่ต้องดำเนินการ: เรียงแนวนอนทีละรายการ */
+body.portal-mode .home-status-grid{
+  grid-template-columns:1fr !important;
+  gap:10px !important;
+  padding:14px !important;
+}
+
+body.portal-mode .home-status-card{
+  min-height:88px !important;
+}
+
+/* จอแคบมาก ให้ KPI ความเสี่ยงเรียงแถวเดียวเพื่อไม่ให้ข้อความแน่น */
+@media (max-width:360px){
+  body.portal-mode .home-risk-summary-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  body.portal-mode .home-risk-summary-card.all{
+    grid-column:auto !important;
+  }
+
+  body.portal-mode .home-risk-summary-card.score,
+  body.portal-mode .home-risk-summary-card.attendance{
+    min-height:88px !important;
+    flex-direction:row !important;
+    align-items:center !important;
+  }
+}
+
 </style>
 </head>
 <body>
