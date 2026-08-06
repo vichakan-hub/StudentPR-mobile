@@ -6596,6 +6596,519 @@ body.student-sidebar-lock{
 
 }
 
+
+
+/* =====================================================
+   StudentPR Mobile — TeacherPR Mobile Style Prototype
+   ===================================================== */
+
+:root{
+  --student-mobile-shell:430px;
+  --student-mobile-nav-height:86px;
+  --student-mobile-bg:#f4f7fb;
+}
+
+html,
+body{
+  background:#dbeafe !important;
+}
+
+body{
+  overscroll-behavior-y:none;
+}
+
+body:not(.portal-mode){
+  padding:0 !important;
+}
+
+body:not(.portal-mode) .app{
+  width:100% !important;
+  max-width:var(--student-mobile-shell) !important;
+  min-height:100dvh;
+  margin:0 auto !important;
+  padding:
+    calc(50px + env(safe-area-inset-top))
+    20px
+    calc(28px + env(safe-area-inset-bottom));
+  overflow:hidden;
+  color:#ffffff;
+  background:linear-gradient(
+    135deg,
+    #1d4ed8 0%,
+    #2563eb 58%,
+    #22b8cf 100%
+  ) !important;
+  box-shadow:0 0 50px rgba(15,23,42,.18);
+}
+
+body:not(.portal-mode) .student-login-header{
+  margin:0 !important;
+}
+
+body:not(.portal-mode) .student-login-banner{
+  min-height:0 !important;
+  padding:0 !important;
+  display:block !important;
+  overflow:visible !important;
+  color:#ffffff !important;
+  background:transparent !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+
+body:not(.portal-mode) .student-login-banner::before,
+body:not(.portal-mode) .student-login-banner::after{
+  display:none !important;
+}
+
+body:not(.portal-mode) .student-login-brand{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  gap:0 !important;
+}
+
+body:not(.portal-mode) .student-login-logo-wrap{
+  width:112px !important;
+  height:112px !important;
+  flex:0 0 112px !important;
+  margin:0 0 18px !important;
+  padding:10px !important;
+  border-radius:999px !important;
+  background:rgba(255,255,255,.96) !important;
+  box-shadow:0 18px 38px rgba(15,23,42,.22) !important;
+}
+
+body:not(.portal-mode) .student-login-logo{
+  border-radius:999px !important;
+}
+
+body:not(.portal-mode) .student-login-app-name{
+  font-size:42px !important;
+  line-height:1.08 !important;
+  letter-spacing:-.5px !important;
+}
+
+body:not(.portal-mode) .student-login-system-name{
+  margin-top:4px !important;
+  color:rgba(255,255,255,.94) !important;
+  font-size:20px !important;
+  line-height:1.35 !important;
+  font-weight:700 !important;
+}
+
+body:not(.portal-mode) .student-login-school-name{
+  margin-top:3px !important;
+  color:rgba(255,255,255,.88) !important;
+  font-size:14px !important;
+  line-height:1.5 !important;
+}
+
+body:not(.portal-mode) .student-login-department,
+body:not(.portal-mode) .student-login-info-card{
+  display:none !important;
+}
+
+body:not(.portal-mode) .student-login-grid{
+  display:block !important;
+  margin-top:34px !important;
+}
+
+body:not(.portal-mode) .student-login-card{
+  min-height:0 !important;
+  padding:20px !important;
+  color:#17263c !important;
+  background:rgba(255,255,255,.96) !important;
+  border:1px solid rgba(255,255,255,.72) !important;
+  border-radius:30px !important;
+  box-shadow:0 22px 48px rgba(15,23,42,.20) !important;
+}
+
+body:not(.portal-mode) .student-login-card-head{
+  margin-bottom:16px !important;
+}
+
+body:not(.portal-mode) .student-login-panel-icon{
+  width:50px !important;
+  height:50px !important;
+  flex-basis:50px !important;
+  border-radius:18px !important;
+  background:#dbeafe !important;
+  color:#1d4ed8 !important;
+}
+
+body:not(.portal-mode) .student-login-panel-title{
+  font-size:20px !important;
+}
+
+body:not(.portal-mode) .student-login-input-wrap input{
+  height:54px !important;
+  min-height:54px !important;
+  border-radius:18px !important;
+  background:#ffffff !important;
+  font-size:16px !important;
+}
+
+body:not(.portal-mode) .student-login-submit{
+  min-height:50px !important;
+  margin-top:4px !important;
+  border-radius:18px !important;
+  background:#2563eb !important;
+  box-shadow:0 10px 22px rgba(37,99,235,.22) !important;
+}
+
+body:not(.portal-mode) .student-login-help{
+  border-radius:16px !important;
+  background:#eef3f8 !important;
+}
+
+body.portal-mode{
+  padding:0 !important;
+  background:#dbeafe !important;
+}
+
+body.portal-mode .app{
+  position:relative;
+  width:100% !important;
+  max-width:var(--student-mobile-shell) !important;
+  min-height:100dvh;
+  margin:0 auto !important;
+  overflow-x:hidden;
+  background:var(--student-mobile-bg) !important;
+  box-shadow:0 0 50px rgba(15,23,42,.18);
+}
+
+#portalSection{
+  display:block !important;
+  min-height:100dvh !important;
+  background:var(--student-mobile-bg) !important;
+}
+
+#portalSection.hidden{
+  display:none !important;
+}
+
+.student-sidebar,
+.student-sidebar-backdrop{
+  display:none !important;
+}
+
+.student-main-area{
+  width:100% !important;
+  min-width:0 !important;
+  padding:
+    0
+    16px
+    calc(var(--student-mobile-nav-height) + 20px + env(safe-area-inset-bottom))
+    !important;
+}
+
+.student-mobile-topbar{
+  position:relative !important;
+  top:auto !important;
+  z-index:1 !important;
+  min-height:230px !important;
+  margin:0 -16px 18px !important;
+  padding:
+    calc(50px + env(safe-area-inset-top))
+    18px
+    28px
+    !important;
+  display:flex !important;
+  align-items:flex-start !important;
+  justify-content:space-between !important;
+  gap:12px !important;
+  color:#ffffff !important;
+  border:0 !important;
+  border-radius:0 0 34px 34px !important;
+  background:linear-gradient(
+    135deg,
+    #1d4ed8 0%,
+    #2563eb 58%,
+    #22b8cf 100%
+  ) !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+}
+
+.student-mobile-topbar-copy{
+  min-width:0;
+  flex:1 1 auto;
+}
+
+.student-mobile-brand-pill{
+  width:max-content;
+  max-width:100%;
+  min-height:38px;
+  padding:7px 11px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:999px;
+  color:#ffffff;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(12px);
+  font-size:13px;
+  font-weight:800;
+}
+
+.student-mobile-brand-logo{
+  width:22px;
+  height:22px;
+  padding:2px;
+  flex:0 0 22px;
+  object-fit:contain;
+  border-radius:999px;
+  background:#ffffff;
+}
+
+.student-topbar-title{
+  max-width:none !important;
+  margin-top:14px;
+  color:#ffffff !important;
+  font-size:28px !important;
+  line-height:1.16 !important;
+  font-weight:900 !important;
+  white-space:normal !important;
+  overflow:visible !important;
+}
+
+.student-topbar-sub{
+  display:block !important;
+  margin-top:4px !important;
+  color:rgba(255,255,255,.88) !important;
+  font-size:13px !important;
+  line-height:1.5 !important;
+  font-weight:700 !important;
+}
+
+.student-mobile-topbar .user-code-pill{
+  min-height:0 !important;
+  max-width:100% !important;
+  margin-top:7px !important;
+  padding:0 !important;
+  display:block !important;
+  overflow:hidden;
+  color:rgba(255,255,255,.94) !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  font-size:15px !important;
+  line-height:1.5 !important;
+  font-weight:700 !important;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.student-mobile-logout-btn{
+  width:46px;
+  height:46px;
+  padding:0;
+  display:grid;
+  place-items:center;
+  flex:0 0 46px;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:17px;
+  color:#ffffff;
+  background:rgba(255,255,255,.18);
+  box-shadow:0 10px 24px rgba(15,23,42,.16);
+  backdrop-filter:blur(12px);
+}
+
+.student-mobile-logout-btn svg{
+  width:24px;
+  height:24px;
+}
+
+.home-dashboard{
+  gap:14px !important;
+}
+
+.home-welcome-card{
+  padding:18px !important;
+  border-radius:28px !important;
+  background:#ffffff !important;
+  color:#17263c !important;
+  border:1px solid rgba(255,255,255,.70) !important;
+  box-shadow:0 14px 34px rgba(15,23,42,.10) !important;
+}
+
+.home-welcome-icon{
+  color:#1d4ed8 !important;
+  background:#dbeafe !important;
+  border-color:#dbeafe !important;
+}
+
+.home-student-meta,
+.home-welcome-mini{
+  color:#6b7a90 !important;
+  opacity:1 !important;
+}
+
+.home-primary-btn{
+  color:#ffffff !important;
+  background:#2563eb !important;
+}
+
+.home-kpi-grid{
+  grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+  gap:9px !important;
+}
+
+.home-kpi-card{
+  min-height:118px !important;
+  padding:13px !important;
+  align-items:flex-start !important;
+  flex-direction:column !important;
+  gap:8px !important;
+  border-radius:20px !important;
+  box-shadow:0 6px 18px rgba(15,23,42,.05) !important;
+}
+
+.home-section-card,
+.student-head,
+.summary-card,
+.term-gpa-card,
+.radar-card,
+.student-risk-page,
+.retest-tracking-card,
+.table-card{
+  border-radius:24px !important;
+  background:#ffffff !important;
+  border:1px solid rgba(255,255,255,.70) !important;
+  box-shadow:0 14px 34px rgba(15,23,42,.10) !important;
+}
+
+.home-section-head,
+.table-head,
+.summary-head,
+.term-gpa-head,
+.radar-head,
+.student-risk-head,
+.retest-tracking-head{
+  background:#ffffff !important;
+}
+
+.student-mobile-bottom-nav{
+  position:fixed;
+  left:50%;
+  bottom:0;
+  z-index:60;
+  width:100%;
+  max-width:var(--student-mobile-shell);
+  transform:translateX(-50%);
+  padding:
+    8px
+    12px
+    calc(10px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.94);
+  border-top:1px solid rgba(216,228,239,.92);
+  backdrop-filter:blur(16px);
+  box-shadow:0 -10px 28px rgba(15,23,42,.06);
+}
+
+.student-mobile-nav-grid{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0,1fr));
+  gap:6px;
+}
+
+.student-mobile-nav-btn{
+  position:relative;
+  height:56px;
+  padding:0 4px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+  border:0;
+  border-radius:20px;
+  color:#64748b;
+  background:transparent;
+  font-family:'Kanit',sans-serif;
+  font-size:10.5px;
+  line-height:1.15;
+  font-weight:800;
+}
+
+.student-mobile-nav-btn.active{
+  color:#ffffff;
+  background:#2563eb;
+  box-shadow:0 10px 22px rgba(37,99,235,.22);
+}
+
+.student-mobile-nav-icon{
+  font-size:20px;
+  line-height:1;
+}
+
+.student-mobile-nav-badge{
+  position:absolute;
+  top:2px;
+  right:8px;
+  min-width:20px;
+  height:20px;
+  padding:0 5px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #ffffff;
+  border-radius:999px;
+  color:#ffffff;
+  background:#dc2626;
+  font-family:'Sarabun',sans-serif;
+  font-size:10px;
+  line-height:1;
+  font-weight:900;
+}
+
+.student-mobile-nav-badge.warning{
+  background:#f59e0b;
+}
+
+.student-mobile-nav-btn.active .student-mobile-nav-badge{
+  color:#b91c1c;
+  background:#ffffff;
+  border-color:rgba(255,255,255,.45);
+}
+
+.student-mobile-nav-btn.active .student-mobile-nav-badge.warning{
+  color:#b45309;
+}
+
+@media (max-width:390px){
+  body:not(.portal-mode) .app{
+    padding-left:16px;
+    padding-right:16px;
+  }
+
+  body:not(.portal-mode) .student-login-logo-wrap{
+    width:96px !important;
+    height:96px !important;
+    flex-basis:96px !important;
+  }
+
+  body:not(.portal-mode) .student-login-app-name{
+    font-size:37px !important;
+  }
+
+  .student-topbar-title{
+    font-size:25px !important;
+  }
+
+  .student-mobile-nav-btn{
+    font-size:10px;
+  }
+}
+
+@media (min-width:431px){
+  body{
+    padding:0 !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -6957,49 +7470,51 @@ body.student-sidebar-lock{
 
 <div class="student-main-area">
   <div class="student-mobile-topbar">
-    <div class="student-topbar-left">
-      <button
-        id="studentSidebarToggleBtn"
-        class="btn student-sidebar-toggle"
-        type="button"
-        aria-label="เปิดเมนู"
-        aria-controls="studentSidebar"
-        aria-expanded="false"
-      >
-        ☰
-      </button>
+    <button
+      id="studentSidebarToggleBtn"
+      class="hidden"
+      type="button"
+      aria-hidden="true"
+      tabindex="-1"
+    >
+      ☰
+    </button>
 
-      <div>
-        <div class="student-topbar-title">ระบบสารสนเทศผลการเรียน</div>
-        <div class="student-topbar-sub">โรงเรียนท่าใหม่ “พูลสวัสดิ์ราษฎร์นุกูล”</div>
+    <div class="student-mobile-topbar-copy">
+      <div class="student-mobile-brand-pill">
+        <img
+          src="./assets/school-logo.png"
+          alt="ตราโรงเรียน"
+          class="student-mobile-brand-logo"
+        >
+        <span>StudentPR</span>
+      </div>
+
+      <div class="student-topbar-title">ภาพรวมของฉัน</div>
+      <div class="student-topbar-sub">ระบบสารสนเทศผลการเรียน</div>
+
+      <div
+        class="user-code-pill"
+        id="topStudentIdentity"
+        title="ข้อมูลนักเรียน"
+      >
+        รหัสนักเรียน -
       </div>
     </div>
 
-    <div class="student-topbar-actions">
-
-  <div
-    class="user-code-pill"
-    id="topStudentIdentity"
-    title="ข้อมูลนักเรียน"
-  >
-    รหัสนักเรียน -
-  </div>
-
-  <button
-    id="topLogoutBtn"
-    class="btn student-topbar-logout-btn"
-    type="button"
-    title="ออกจากระบบ"
-    aria-label="ออกจากระบบ"
-  >
-    
-
-    <span class="student-topbar-logout-text">
-      ออกจากระบบ
-    </span>
-  </button>
-
-</div>
+    <button
+      id="topLogoutBtn"
+      class="student-mobile-logout-btn"
+      type="button"
+      title="ออกจากระบบ"
+      aria-label="ออกจากระบบ"
+    >
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M10.5 6.75V5.8C10.5 4.8 11.3 4 12.3 4H17.2C18.2 4 19 4.8 19 5.8V18.2C19 19.2 18.2 20 17.2 20H12.3C11.3 20 10.5 19.2 10.5 18.2V17.25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M14.5 12H4.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M7.9 8.9L4.8 12L7.9 15.1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
   </div>
 
 <section id="pageHome">
@@ -8373,6 +8888,63 @@ body.student-sidebar-lock{
 
 </section>
     </div>
+
+  <nav
+    id="studentMobileBottomNav"
+    class="student-mobile-bottom-nav"
+    aria-label="เมนูหลัก"
+  >
+    <div class="student-mobile-nav-grid">
+      <button
+        id="mobileNavHomeBtn"
+        class="student-mobile-nav-btn active"
+        type="button"
+        data-mobile-page="home"
+      >
+        <span class="student-mobile-nav-icon">🏠</span>
+        <span>หน้าแรก</span>
+      </button>
+
+      <button
+        id="mobileNavGradesBtn"
+        class="student-mobile-nav-btn"
+        type="button"
+        data-mobile-page="grades"
+      >
+        <span class="student-mobile-nav-icon">🎓</span>
+        <span>ผลการเรียน</span>
+      </button>
+
+      <button
+        id="mobileNavRiskBtn"
+        class="student-mobile-nav-btn"
+        type="button"
+        data-mobile-page="risk"
+      >
+        <span class="student-mobile-nav-icon">⚠️</span>
+        <span>ความเสี่ยง</span>
+        <span
+          id="mobileRiskBadge"
+          class="student-mobile-nav-badge hidden"
+        >0</span>
+      </button>
+
+      <button
+        id="mobileNavRemedialBtn"
+        class="student-mobile-nav-btn"
+        type="button"
+        data-mobile-page="remedial"
+      >
+        <span class="student-mobile-nav-icon">📝</span>
+        <span>สอบแก้ตัว</span>
+        <span
+          id="mobileRemedialBadge"
+          class="student-mobile-nav-badge warning hidden"
+        >0</span>
+      </button>
+    </div>
+  </nav>
+
   </section>
 </div>
 
@@ -8396,7 +8968,7 @@ body.student-sidebar-lock{
 
     const CHART_INSTANCES = {};
     const STUDENT_CACHE_VERSION =
-  'v3_home_dashboard_fix';
+  'v4_teacher_mobile_style';
     const CURRENT_ACADEMIC_YEAR = 2569;
 
 const APP_STATE = {
@@ -8668,6 +9240,7 @@ const subMap = {
 document.querySelector('.student-topbar-title').textContent = titleMap[pageKey] || 'หน้าแรก';
 document.querySelector('.student-topbar-sub').textContent = subMap[pageKey] || 'ระบบสารสนเทศผลการเรียน';
 
+  updateMobileBottomNav(pageKey);
   closeStudentSidebar();
 }
 
@@ -14916,9 +15489,138 @@ function initLoginEvents(){
   setStudentLoginBusy(false);
 }
 
+
+
+function updateMobileBottomNav(pageKey){
+  const resolvedPage =
+    pageKey === 'gradeOverview' ||
+    pageKey === 'grades'
+      ? 'grades'
+      : pageKey;
+
+  document
+    .querySelectorAll(
+      '.student-mobile-nav-btn[data-mobile-page]'
+    )
+    .forEach(button => {
+      const active =
+        button.dataset.mobilePage ===
+        resolvedPage;
+
+      button.classList.toggle(
+        'active',
+        active
+      );
+
+      if(active){
+        button.setAttribute(
+          'aria-current',
+          'page'
+        );
+      }else{
+        button.removeAttribute(
+          'aria-current'
+        );
+      }
+    });
+}
+
+function syncMobileBottomNavBadges(){
+  const pairs = [
+    [
+      'riskSidebarBadge',
+      'mobileRiskBadge'
+    ],
+    [
+      'remedialSidebarBadge',
+      'mobileRemedialBadge'
+    ]
+  ];
+
+  pairs.forEach(([sourceId, targetId]) => {
+    const source = $(sourceId);
+    const target = $(targetId);
+
+    if(!target){
+      return;
+    }
+
+    const count = Number(
+      source?.textContent || 0
+    );
+
+    target.textContent =
+      String(
+        Number.isFinite(count)
+          ? count
+          : 0
+      );
+
+    const shouldHide =
+      !source ||
+      source.classList.contains('hidden') ||
+      count <= 0;
+
+    target.classList.toggle(
+      'hidden',
+      shouldHide
+    );
+  });
+}
+
+function initMobileBottomNav(){
+  const clickMap = {
+    mobileNavHomeBtn:'menuHomeBtn',
+    mobileNavGradesBtn:'menuGradesBtn',
+    mobileNavRiskBtn:'menuRiskBtn',
+    mobileNavRemedialBtn:
+      'menuRemedialStatusBtn'
+  };
+
+  Object.entries(clickMap)
+    .forEach(([mobileId, sourceId]) => {
+      $(mobileId)?.addEventListener(
+        'click',
+        () => {
+          $(sourceId)?.click();
+        }
+      );
+    });
+
+  [
+    'riskSidebarBadge',
+    'remedialSidebarBadge'
+  ].forEach(sourceId => {
+    const source = $(sourceId);
+
+    if(!source){
+      return;
+    }
+
+    const observer =
+      new MutationObserver(
+        syncMobileBottomNavBadges
+      );
+
+    observer.observe(
+      source,
+      {
+        attributes:true,
+        childList:true,
+        characterData:true,
+        subtree:true
+      }
+    );
+  });
+
+  syncMobileBottomNavBadges();
+  updateMobileBottomNav('home');
+}
+
     async function bootstrap(){
       initLoginEvents();
       initMenuEvents();
+      initMobileBottomNav();
 
       renderGradeTable([]);
       renderSummary([]);
