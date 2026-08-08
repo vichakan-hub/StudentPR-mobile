@@ -14094,15 +14094,15 @@ if($('homeGpaxValue')){
         : '-';
   }
 
-  if($('homeLatestGpaValue')){
-    $('homeLatestGpaValue').textContent =
-      latestGpa !== null
-        ? formatDashboardDecimal(
-            latestGpa,
-            2
-          )
-        : '-';
-  }
+if($('homeLatestGpaValue')){
+  $('homeLatestGpaValue').textContent =
+    latestGpa !== null
+      ? formatNumberFloor(
+          latestGpa,
+          2
+        )
+      : '-';
+}
 
   if($('homeLatestTermLabel')){
     $('homeLatestTermLabel').textContent =
