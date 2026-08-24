@@ -9254,6 +9254,48 @@ body.portal-mode #pageRisk
   }
 }
 
+/* =====================================================
+   FINAL FIX : Mobile Vertical Scroll
+   แก้บางเครื่องเลื่อนหน้าจอไม่ได้
+   ===================================================== */
+
+html{
+  height:auto !important;
+  min-height:100% !important;
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+  overscroll-behavior-y:auto !important;
+}
+
+body{
+  height:auto !important;
+  min-height:100dvh !important;
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+  overscroll-behavior-y:auto !important;
+
+  -webkit-overflow-scrolling:touch;
+}
+
+/* Mobile รุ่นนี้ไม่ได้ใช้ sidebar drawer แล้ว
+   จึงไม่ควรล็อกการ scroll ของ body */
+body.student-sidebar-lock{
+  height:auto !important;
+  overflow-y:auto !important;
+  position:static !important;
+}
+
+/* ให้ document เป็นตัว scroll หลัก
+   ไม่สร้าง scroll container ซ้อนกัน */
+body:not(.portal-mode) .app,
+body.portal-mode .app,
+#portalSection,
+.student-main-area{
+  height:auto !important;
+  max-height:none !important;
+  overflow-y:visible !important;
+}
+
 </style>
 </head>
 <body>
