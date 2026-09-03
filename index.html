@@ -12864,75 +12864,258 @@ function clearSession(){
 }
 
 
-    function restoreSession(){
-      let raw = null;
-      let restoredFromPersistent = false;
+async function restoreSession(){
 
-      try{
-        raw =
-          sessionStorage.getItem(
-            STUDENT_SESSION_KEY
-          );
+  let token = '';
+  let restoredFromPersistent = false;
 
-        if(!raw){
-          raw =
+
+  try{
+
+    /*
+     * =====================================================
+     * 1) ลอง Session Storage ก่อน
+     *
+     * กรณีไม่ได้เลือก "จดจำฉันไว้"
+     * =====================================================
+     */
+
+    token =
+      String(
+        sessionStorage.getItem(
+          STUDENT_SESSION_TOKEN_KEY
+        ) || ''
+      ).trim();
+
+
+    /*
+     * =====================================================
+     * 2) ถ้าไม่มีใน Session Storage
+     * ตรวจ Remember Me แล้วจึงอ่าน Local Storage
+     * =====================================================
+     */
+
+    if(!token){
+
+      const shouldRemember =
+        localStorage.getItem(
+          STUDENT_REMEMBER_PREF_KEY
+        ) === '1';
+
+
+      if(shouldRemember){
+
+        token =
+          String(
             localStorage.getItem(
-              STUDENT_PERSISTENT_SESSION_KEY
-            );
+              STUDENT_SESSION_TOKEN_KEY
+            ) || ''
+          ).trim();
 
-          restoredFromPersistent =
-            Boolean(raw);
-        }
 
-      }catch(error){
-        raw = null;
+        restoredFromPersistent =
+          Boolean(token);
+
       }
 
-
-      if(!raw){
-        return false;
-      }
-
-
-      try{
-        const parsed =
-          JSON.parse(raw);
-
-        APP_STATE.currentUser =
-          parsed?.currentUser || null;
-
-        APP_STATE.studentProfile =
-          parsed?.studentProfile || null;
-
-
-        const validSession =
-          Boolean(
-            APP_STATE.currentUser &&
-            APP_STATE.studentProfile
-          );
-
-
-        if(!validSession){
-          clearSession();
-          return false;
-        }
-
-
-        if(
-          restoredFromPersistent &&
-          $('rememberMe')
-        ){
-          $('rememberMe').checked = true;
-        }
-
-
-        return true;
-
-      }catch(error){
-        clearSession();
-        return false;
-      }
     }
+
+  }catch(error){
+
+    console.warn(
+      'READ STUDENT SESSION ERROR =',
+      error
+    );
+
+    return false;
+  }
+
+
+  /*
+   * ไม่มี opaque token
+   */
+  if(!token){
+
+    APP_STATE.currentUser =
+      null;
+
+    APP_STATE.studentProfile =
+      null;
+
+    APP_STATE.studentSessionToken =
+      '';
+
+    APP_STATE.studentSessionExpiresAt =
+      null;
+
+    return false;
+  }
+
+
+  /*
+   * =====================================================
+   * 3) ตรวจ token กับ Database จริง
+   * =====================================================
+   */
+
+  const { data, error } =
+    await supabaseClient.rpc(
+      'get_student_session_context',
+      {
+        p_token: token
+      }
+    );
+
+
+  /*
+   * กรณี Network / Supabase มีปัญหา
+   *
+   * ไม่เปิด Portal
+   * แต่ไม่ทำลาย token
+   * เพื่อให้ผู้ใช้ Reload แล้วลองใหม่ได้
+   */
+  if(error){
+
+    console.warn(
+      'RESTORE STUDENT SESSION RPC ERROR =',
+      error
+    );
+
+    return false;
+  }
+
+
+  const result =
+    Array.isArray(data)
+      ? data[0]
+      : data;
+
+
+  /*
+   * =====================================================
+   * 4) Token หมดอายุ / revoke / ปลอม
+   * =====================================================
+   */
+
+  if(
+    !result ||
+    result.ok !== true ||
+    !result.user
+  ){
+
+    clearSession();
+
+    APP_STATE.currentUser =
+      null;
+
+    APP_STATE.studentProfile =
+      null;
+
+    return false;
+  }
+
+
+  const user =
+    result.user;
+
+
+  /*
+   * ต้องมีตัวตนที่ DB ยืนยัน
+   */
+  const studentId =
+    String(
+      user.id || ''
+    ).trim();
+
+
+  const studentCode =
+    String(
+      user.sid ||
+      user.student_code ||
+      ''
+    ).trim();
+
+
+  if(
+    !studentId ||
+    !studentCode
+  ){
+
+    clearSession();
+
+    APP_STATE.currentUser =
+      null;
+
+    APP_STATE.studentProfile =
+      null;
+
+    return false;
+  }
+
+
+  /*
+   * =====================================================
+   * 5) สร้างตัวตนใน RAM
+   *
+   * ข้อมูลนี้มาจาก Database
+   * ไม่ใช่ JSON ที่ Browser เก็บไว้
+   * =====================================================
+   */
+
+  APP_STATE.currentUser = {
+    ...user,
+
+    sid:
+      studentCode,
+
+    student_code:
+      studentCode
+  };
+
+
+  APP_STATE.studentProfile = {
+    ...user,
+
+    sid:
+      studentCode,
+
+    student_code:
+      studentCode
+  };
+
+
+  APP_STATE.studentSessionToken =
+    token;
+
+
+  APP_STATE.studentSessionExpiresAt =
+    result.expires_at || null;
+
+
+  /*
+   * ถ้า Restore จาก Local Storage
+   * ให้ checkbox Remember Me อยู่ในสถานะเลือก
+   */
+  if(
+    restoredFromPersistent &&
+    $('rememberMe')
+  ){
+    $('rememberMe').checked =
+      true;
+  }
+
+
+  /*
+   * จัดรูปแบบ Storage ใหม่อีกครั้ง
+   * ตาม Remember Me ปัจจุบัน
+   *
+   * ยังเก็บเฉพาะ opaque token
+   */
+  saveSession();
+
+
+  return true;
+}
 
 function applyRemedialEligibility(rows){
   const btn = $('btnRequestRemedial');
@@ -18615,7 +18798,8 @@ function initMobileBottomNav(){
       renderSummary([]);
       renderRemedialStatus();
 
-      const restored = restoreSession();
+     const restored =
+  await restoreSession();
       if(!restored){
         setPortalVisible(false);
         return;
