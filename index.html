@@ -17571,9 +17571,95 @@ saveSession();
 }
     }
 
-    function handleLogout(){
-      APP_STATE.currentUser = null;
-      APP_STATE.studentProfile = null;
+async function handleLogout(){
+
+  /*
+   * =====================================================
+   * 1) เก็บ opaque token ไว้ก่อน clearSession()
+   *
+   * Mobile อาจอยู่ได้ทั้ง
+   * - sessionStorage
+   * - localStorage เมื่อเลือก Remember Me
+   * =====================================================
+   */
+
+  let token = '';
+
+  try{
+
+    token =
+      String(
+        APP_STATE.studentSessionToken ||
+        sessionStorage.getItem(
+          STUDENT_SESSION_TOKEN_KEY
+        ) ||
+        localStorage.getItem(
+          STUDENT_SESSION_TOKEN_KEY
+        ) ||
+        ''
+      ).trim();
+
+  }catch(error){
+
+    /*
+     * ถ้า Browser Storage มีปัญหา
+     * ยังลองใช้ token ใน RAM
+     */
+    token =
+      String(
+        APP_STATE.studentSessionToken || ''
+      ).trim();
+
+  }
+
+
+  /*
+   * =====================================================
+   * 2) Revoke Session ที่ Database
+   * =====================================================
+   */
+
+  if(token){
+
+    try{
+
+      const { error } =
+        await supabaseClient.rpc(
+          'logout_student_session',
+          {
+            p_token: token
+          }
+        );
+
+
+      if(error){
+        throw error;
+      }
+
+    }catch(error){
+
+      /*
+       * ต่อให้ Network / Supabase มีปัญหา
+       * ผู้ใช้ยังต้อง Logout ฝั่งเครื่องได้
+       */
+      console.warn(
+        'STUDENT SESSION REVOKE ERROR =',
+        error
+      );
+
+    }
+
+  }
+
+
+  /*
+   * =====================================================
+   * 3) จากตรงนี้ใช้ Logout เดิมทั้งหมดต่อ
+   * =====================================================
+   */
+
+  APP_STATE.currentUser = null;
+  APP_STATE.studentProfile = null;
 APP_STATE.latestYearTerm = null;
 APP_STATE.selectedYearTerm = null;
 APP_STATE.availableTerms = [];
