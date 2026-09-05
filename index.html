@@ -12396,18 +12396,40 @@ async function refreshStudentReportCacheIfPossible(){
         }
       }
 
-      const loadTerms = async () => {
-        const { data, error } = await supabaseClient.rpc('rpc_student_available_terms', {
-          p_student_code: studentCode
-        });
+const loadTerms = async () => {
 
-        if(error) throw error;
+  const token =
+    String(
+      APP_STATE.studentSessionToken || ''
+    ).trim();
 
-        return (Array.isArray(data) ? data : [])
-          .map(normalizeAvailableTerm)
-          .filter(item => item.key)
-          .sort(compareClassTermDesc);
-      };
+
+  if(!token){
+    throw new Error(
+      'Session หมดอายุ กรุณาเข้าสู่ระบบใหม่'
+    );
+  }
+
+
+  const { data, error } =
+    await supabaseClient.rpc(
+      'rpc_student_available_terms_session',
+      {
+        p_token: token
+      }
+    );
+
+
+  if(error){
+    throw error;
+  }
+
+
+  return (Array.isArray(data) ? data : [])
+    .map(normalizeAvailableTerm)
+    .filter(item => item.key)
+    .sort(compareClassTermDesc);
+};
 
       let terms = await loadTerms();
 
