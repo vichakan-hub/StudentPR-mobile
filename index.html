@@ -11563,6 +11563,119 @@ async function checkStudentPortalAccess(){
 
 }
 
+function formatThaiPortalDateTime(
+  value
+){
+
+  if(!value){
+    return '';
+  }
+
+
+  const date =
+    new Date(value);
+
+
+  if(
+    Number.isNaN(
+      date.getTime()
+    )
+  ){
+    return '';
+  }
+
+
+  const dateText =
+    new Intl.DateTimeFormat(
+      'th-TH-u-ca-buddhist',
+      {
+        timeZone:
+          'Asia/Bangkok',
+
+        day:
+          'numeric',
+
+        month:
+          'short',
+
+        year:
+          'numeric'
+      }
+    ).format(date);
+
+
+  const timeText =
+    new Intl.DateTimeFormat(
+      'th-TH',
+      {
+        timeZone:
+          'Asia/Bangkok',
+
+        hour:
+          '2-digit',
+
+        minute:
+          '2-digit',
+
+        hour12:
+          false
+      }
+    ).format(date);
+
+
+  return (
+    `${dateText} เวลา ${timeText} น.`
+  );
+
+}
+
+
+function buildStudentPortalBlockedMessage(
+  gateResult
+){
+
+  const activeClasses =
+    Array.isArray(
+      gateResult?.active_classes
+    )
+      ? gateResult.active_classes
+      : [];
+
+
+  const classText =
+    activeClasses.length
+      ? activeClasses
+          .map(
+            value =>
+              `ม.${value}`
+          )
+          .join(', ')
+      : 'ระดับชั้นอื่น';
+
+
+  const nextAllowedText =
+    formatThaiPortalDateTime(
+      gateResult?.next_allowed_at
+    );
+
+
+  if(nextAllowedText){
+
+    return (
+      `ขณะนี้ StudentPR อยู่ในช่วงประกาศผลสำหรับ ${classText} ` +
+      `คุณจะสามารถเข้าใช้งานได้อีกครั้งตั้งแต่ ${nextAllowedText}`
+    );
+
+  }
+
+
+  return (
+    gateResult?.message ||
+    'ขณะนี้ยังไม่สามารถเข้าใช้งาน StudentPR ได้'
+  );
+
+}
+
 function clearStudentPortalGateTimer(){
 
   if(studentPortalGateTimer){
@@ -11842,11 +11955,12 @@ async function runStudentPortalGateCheck(
       );
 
 
-      setLoginStatus(
-        gateResult.message ||
-        'ขณะนี้ยังไม่สามารถเข้าใช้งาน StudentPR ได้',
-        true
-      );
+setLoginStatus(
+  buildStudentPortalBlockedMessage(
+    gateResult
+  ),
+  true
+);
 
 
       return gateResult;
@@ -18769,11 +18883,12 @@ if(
   setPortalVisible(false);
 
 
-  setLoginStatus(
-    gateResult.message ||
-    'ขณะนี้ยังไม่สามารถเข้าใช้งาน StudentPR ได้',
-    true
-  );
+setLoginStatus(
+  buildStudentPortalBlockedMessage(
+    gateResult
+  ),
+  true
+);
 
 
   if($('password')){
@@ -20294,11 +20409,12 @@ async function bootstrap(){
       );
 
 
-      setLoginStatus(
-        gateResult.message ||
-        'ขณะนี้ยังไม่สามารถเข้าใช้งาน StudentPR ได้',
-        true
-      );
+setLoginStatus(
+  buildStudentPortalBlockedMessage(
+    gateResult
+  ),
+  true
+);
 
 
       return;
