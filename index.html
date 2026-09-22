@@ -12776,22 +12776,52 @@ async function loginStudent(
   return result;
 }
 
-    async function fetchStudentProfile(studentId){
-      const { data, error } = await supabaseClient
-        .from('students')
-        .select(`
-          id,
-          sid,
-          raw_full_name,
-          current_room,
-          current_no
-        `)
-        .eq('id', studentId)
-        .single();
+async function fetchStudentProfile(){
 
-      if(error) throw error;
-      return data;
-    }
+  const token =
+    String(
+      APP_STATE.studentSessionToken ||
+      ''
+    ).trim();
+
+
+  if(!token){
+    throw new Error(
+      'Session หมดอายุ กรุณาเข้าสู่ระบบใหม่'
+    );
+  }
+
+
+  const { data, error } =
+    await supabaseClient.rpc(
+      'rpc_student_profile_session',
+      {
+        p_token: token
+      }
+    );
+
+
+  if(error){
+    throw error;
+  }
+
+
+  const row =
+    Array.isArray(data)
+      ? data[0]
+      : data;
+
+
+  if(!row){
+    throw new Error(
+      'ไม่พบข้อมูลนักเรียน'
+    );
+  }
+
+
+  return row;
+
+}
 
     function getStudentSidForRpc(){
       return safeText(APP_STATE.studentProfile?.[FIELD_MAP.students.sid] || APP_STATE.currentUser?.sid || APP_STATE.currentUser?.student_code, '');
@@ -16823,7 +16853,8 @@ safeText(
 
       try{
         if(!APP_STATE.studentProfile){
-          APP_STATE.studentProfile = await fetchStudentProfile(APP_STATE.currentUser.id);
+          APP_STATE.studentProfile =
+  await fetchStudentProfile();
         }
 
         updatePortalIdentity();
