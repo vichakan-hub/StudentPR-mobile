@@ -2,7 +2,7 @@ const CACHE_PREFIX =
   'studentpr-mobile-cache-';
 
 const CACHE_NAME =
-  `${CACHE_PREFIX}v2`;
+  `${CACHE_PREFIX}v1`;
 
 const APP_SHELL = [
   './',
@@ -91,9 +91,9 @@ self.addEventListener(
       return;
     }
 
-    if(request.mode === 'navigate'){
-      event.respondWith(
-        fetch(request)
+if(request.mode === 'navigate'){
+  event.respondWith(
+    fetch(request, { cache: 'no-store' })
           .then(response => {
             const clone =
               response.clone();
