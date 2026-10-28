@@ -2,7 +2,7 @@ const CACHE_PREFIX =
   'studentpr-mobile-cache-';
 
 const CACHE_NAME =
-  `${CACHE_PREFIX}v1`;
+  `${CACHE_PREFIX}v2`;
 
 const APP_SHELL = [
   './',
